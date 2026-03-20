@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGS OS &mdash; Pr&eacute;sentation Compl&egrave;te</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{sags:'#E80000','sags-dark':'#CC0000',dark:'#0a0a0a',cream:'#fafaf9',neo:{yellow:'#facc15',blue:'#3b82f6',green:'#22c55e',purple:'#a855f7',pink:'#ec4899',orange:'#f97316',cyan:'#06b6d4'}},fontFamily:{sans:['Space Grotesk','system-ui','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',system-ui,sans-serif;background:#fafaf9;color:#0a0a0a;overflow-x:hidden}
+.neo-border{border:3px solid #0a0a0a}
+.neo-shadow{box-shadow:6px 6px 0 #0a0a0a}
+.neo-shadow-red{box-shadow:6px 6px 0 #E80000}
+.neo-btn{transition:all .15s ease}
+.neo-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #0a0a0a}
+.neo-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 #0a0a0a}
+.neo-card{transition:all .3s ease}
+.neo-card:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 #0a0a0a}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal-left.active{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal-right.active{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.9);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal-scale.active{opacity:1;transform:scale(1)}
+.gradient-text{background:linear-gradient(135deg,#E80000,#ff4444,#E80000);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mesh-bg{background:radial-gradient(at 20% 20%,rgba(232,0,0,.06) 0,transparent 50%),radial-gradient(at 80% 80%,rgba(59,130,246,.04) 0,transparent 50%)}
+.stripe-bg{background-image:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,.015) 10px,rgba(0,0,0,.015) 20px)}
+.dot-bg{background-image:radial-gradient(#0a0a0a 1px,transparent 1px);background-size:20px 20px}
+.grid-bg{background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:40px 40px}
+.cross-bg{background-image:radial-gradient(#E80000 1.5px,transparent 1.5px);background-size:30px 30px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes pulse-red{0%,100%{box-shadow:0 0 0 0 rgba(232,0,0,.4)}50%{box-shadow:0 0 0 12px rgba(232,0,0,0)}}
+@keyframes slide-in{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes counter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate-float{animation:float 6s ease-in-out infinite}
+.animate-pulse-red{animation:pulse-red 2s ease-in-out infinite}
+.screenshot{border:3px solid #0a0a0a;border-radius:12px;box-shadow:8px 8px 0 #0a0a0a;transition:all .4s ease;width:100%}
+.screenshot:hover{transform:rotate(-1deg) scale(1.02);box-shadow:12px 12px 0 #E80000}
+.screenshot-clean{border:2px solid rgba(0,0,0,.1);border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.08);transition:all .4s ease;width:100%}
+.screenshot-clean:hover{box-shadow:0 8px 40px rgba(0,0,0,.12);transform:translateY(-4px)}
+.tag{display:inline-block;padding:4px 12px;border:2px solid #0a0a0a;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.tag-red{background:#E80000;color:white;border-color:#E80000}
+.tag-green{background:#22c55e;color:white;border-color:#22c55e}
+.tag-blue{background:#3b82f6;color:white;border-color:#3b82f6}
+.tag-purple{background:#a855f7;color:white;border-color:#a855f7}
+nav{backdrop-filter:blur(12px)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#fafaf9}::-webkit-scrollbar-thumb{background:#0a0a0a;border-radius:4px}
+.progress-bar{height:4px;background:linear-gradient(90deg,#E80000,#ff4444);position:fixed;top:0;left:0;z-index:100;transition:width .3s}
+.code-block{background:#0a0a0a;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;padding:24px;border:3px solid #0a0a0a;border-radius:8px;overflow-x:auto;line-height:1.7}
+.code-block .cm{color:#6b7280}.code-block .kw{color:#facc15}.code-block .fn{color:#3b82f6}.code-block .str{color:#22c55e}.code-block .num{color:#f97316}.code-block .tp{color:#a855f7}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#E80000;font-weight:600;letter-spacing:.1em}
+.divider{height:3px;background:repeating-linear-gradient(90deg,#0a0a0a 0,#0a0a0a 8px,transparent 8px,transparent 16px);margin:0 auto}
+.step-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.step-active{background:#E80000;color:white;border:3px solid #0a0a0a}
+.step-done{background:#22c55e;color:white;border:3px solid #0a0a0a}
+.step-pending{background:#e5e5e5;color:#999;border:3px solid #ccc}
+.tooltip{position:relative;cursor:help}
+.tooltip:hover::after{content:attr(data-tip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:#0a0a0a;color:white;padding:6px 12px;border-radius:6px;font-size:12px;white-space:nowrap;z-index:10}
+.flow-arrow{position:relative}.flow-arrow::after{content:'\2192';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-size:20px;color:#E80000}
+.highlight-box{border-left:4px solid #E80000;padding-left:16px;background:rgba(232,0,0,.03)}
+</style>
+</head>
+<body class="bg-cream">
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="fixed top-0 w-full z-50 bg-cream/80 border-b-[3px] border-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img src="img/logo-sags.jpg" alt="SAGS" class="w-9 h-9 rounded neo-border object-cover cursor-pointer" id="logoSpin">
+<span class="font-bold tracking-tight">ExplorIA <span class="text-sags">&times;</span> SAGS</span>
+<span class="tag tag-red text-xs hidden sm:inline">MARS 2026</span>
+</div>
+<div class="hidden lg:flex items-center gap-5 text-sm font-medium">
+<a href="#hero" class="hover:text-sags transition">Accueil</a>
+<a href="#acces" class="hover:text-sags transition font-bold text-sags">Acc&egrave;s</a>
+<a href="#frontend" class="hover:text-sags transition">Frontend</a>
+<a href="#memoire" class="hover:text-sags transition">M&eacute;moire Tech</a>
+<a href="#ia-admin" class="hover:text-sags transition">IA Admin</a>
+<a href="#ged" class="hover:text-sags transition">GED</a>
+<a href="#archi" class="hover:text-sags transition">Architecture</a>
+<a href="#suite" class="hover:text-sags transition">La suite</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-dark/40 hidden md:inline font-mono" id="sectionCounter">0/85</span>
+<a href="#hero" class="neo-border bg-dark text-white px-4 py-2 text-xs font-bold neo-btn">Haut &uarr;</a>
+</div>
+</div>
+</nav>
+
+<!-- ===================== SECTION 1 : HERO ===================== -->
+<section id="hero" class="min-h-screen flex items-center pt-20 mesh-bg relative overflow-hidden">
+<div class="absolute top-32 right-10 w-64 h-64 bg-neo-yellow/10 rounded-full blur-3xl animate-float"></div>
+<div class="absolute bottom-20 left-10 w-80 h-80 bg-sags/5 rounded-full blur-3xl animate-float" style="animation-delay:-3s"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+<div class="text-center reveal">
+<p class="section-num mb-4">SECTION 1 / 95</p>
+<p class="text-dark/40 text-sm font-medium mb-6">Pr&eacute;sentation technique compl&egrave;te &mdash; Mars 2026</p>
+<h1 class="text-5xl sm:text-7xl font-bold leading-[1.05] mb-8">Salut <span class="gradient-text">Jalil</span> &amp; <span class="gradient-text">Andrei</span></h1>
+<p class="text-xl text-dark/60 mb-4 max-w-2xl mx-auto leading-relaxed">Voici la pr&eacute;sentation compl&egrave;te de <strong>SAGS OS</strong>. On va tout passer en revue ensemble : le front-end, la g&eacute;n&eacute;ration de m&eacute;moires techniques par IA, le chat admin, et surtout le nouveau module <strong>GED</strong>.</p>
+<p class="text-dark/40 mb-10">95 sections, z&eacute;ro bullshit &mdash; Baptiste</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a href="#acces" class="neo-border bg-sags text-white px-6 py-3 font-bold neo-btn">Acc&egrave;s &agrave; l'app &darr;</a>
+<a href="#frontend" class="neo-border bg-dark text-white px-6 py-3 font-bold neo-btn">Front-end &darr;</a>
+<a href="#memoire" class="neo-border bg-white px-6 py-3 font-bold neo-btn">M&eacute;moire IA &darr;</a>
+<a href="#ged" class="neo-border bg-white px-6 py-3 font-bold neo-btn">Module GED &darr;</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION ACCÈS : IDENTIFIANTS ===================== -->
+<section id="acces" class="py-20 bg-dark text-white relative overflow-hidden">
+<div class="absolute inset-0 grid-bg opacity-5"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+<div class="text-center reveal mb-12">
+<span class="tag tag-red text-sm mb-4 inline-block">ACC&Egrave;S</span>
+<h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-4">Connectez-vous &agrave; SAGS OS</h2>
+<p class="text-lg text-white/60 max-w-xl mx-auto">L'application est en ligne. Voici les identifiants pour tester les deux interfaces.</p>
+</div>
+<div class="max-w-3xl mx-auto">
+<!-- URL -->
+<div class="text-center mb-10 reveal">
+<a href="https://sagsos.online/" target="_blank" class="inline-flex items-center gap-3 neo-border border-sags bg-sags/10 px-8 py-4 rounded-lg text-xl font-bold neo-btn hover:bg-sags/20 transition">
+<span class="w-3 h-3 bg-neo-green rounded-full animate-pulse-red" style="animation:pulse-red 2s ease-in-out infinite;--tw-shadow-color:rgba(34,197,94,.4)"></span>
+sagsos.online
+<span class="text-white/40">&rarr;</span>
+</a>
+</div>
+<!-- Cards -->
+<div class="grid sm:grid-cols-2 gap-6">
+<div class="neo-border border-white/20 bg-white/5 p-6 rounded-lg neo-card reveal" style="transition-delay:.1s">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-sags rounded-lg flex items-center justify-center"><span class="text-white font-bold text-sm">A</span></div>
+<div><h3 class="font-bold text-lg">Admin</h3><p class="text-white/40 text-xs">Dashboard complet, IA, GED</p></div>
+</div>
+<div class="space-y-3">
+<div class="bg-white/5 rounded-lg p-3">
+<p class="text-white/40 text-xs uppercase tracking-wider mb-1">Email</p>
+<p class="font-mono text-sm select-all cursor-pointer hover:text-sags transition">admin@sagsos.online</p>
+</div>
+<div class="bg-white/5 rounded-lg p-3">
+<p class="text-white/40 text-xs uppercase tracking-wider mb-1">Mot de passe</p>
+<p class="font-mono text-sm select-all cursor-pointer hover:text-sags transition">SagsAdmin2026!</p>
+</div>
+</div>
+</div>
+<div class="neo-border border-white/20 bg-white/5 p-6 rounded-lg neo-card reveal" style="transition-delay:.2s">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-neo-green rounded-lg flex items-center justify-center"><span class="text-white font-bold text-sm">T</span></div>
+<div><h3 class="font-bold text-lg">Agent Terrain</h3><p class="text-white/40 text-xs">Interface mobile, chat IA</p></div>
+</div>
+<div class="space-y-3">
+<div class="bg-white/5 rounded-lg p-3">
+<p class="text-white/40 text-xs uppercase tracking-wider mb-1">Email</p>
+<p class="font-mono text-sm select-all cursor-pointer hover:text-neo-green transition">agent@sagsos.online</p>
+</div>
+<div class="bg-white/5 rounded-lg p-3">
+<p class="text-white/40 text-xs uppercase tracking-wider mb-1">Mot de passe</p>
+<p class="font-mono text-sm select-all cursor-pointer hover:text-neo-green transition">SagsAgent2026!</p>
+</div>
+</div>
+</div>
+</div>
+<p class="text-white/30 text-xs text-center mt-6 reveal">Cliquez sur un identifiant pour le s&eacute;lectionner. Le routage est automatique selon le r&ocirc;le.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 2 : C'EST QUOI ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="max-w-3xl reveal">
+<p class="section-num mb-2">SECTION 2 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-6">C'est quoi SAGS OS ?</h2>
+<p class="text-lg text-dark/60 leading-relaxed mb-6">SAGS OS, c'est une application web que j'ai d&eacute;velopp&eacute;e pour centraliser toute la gestion du Groupe SAGS. Au lieu d'avoir des fichiers Excel, des mails, des appels dans tous les sens &mdash; tout est regroup&eacute; dans une seule interface.</p>
+<p class="text-lg text-dark/60 leading-relaxed mb-6">Concr&egrave;tement, il y a <strong>deux interfaces</strong> : une pour l'admin (toi Jalil) et une pour tes agents terrain (sur leur t&eacute;l&eacute;phone). Plus un <strong>chatbot IA</strong> int&eacute;gr&eacute; pour les deux.</p>
+<div class="highlight-box my-8 py-4">
+<p class="text-dark/80 font-medium">L'app tourne sur <strong>visionia-france.com</strong>, h&eacute;berg&eacute;e chez Vercel &agrave; Paris (datacenter CDG1). Base de donn&eacute;es Supabase. Intelligence artificielle Claude (Anthropic) + GPT-4o (OpenAI).</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 3 : STACK TECHNIQUE ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 3 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-10 reveal">La stack technique en un coup d'&oelig;il</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="neo-border bg-white p-6 neo-card reveal" style="transition-delay:.1s">
+<div class="w-12 h-12 bg-dark neo-border flex items-center justify-center mb-4"><span class="text-white font-bold text-lg">N</span></div>
+<h3 class="font-bold text-lg mb-2">Next.js 16</h3>
+<p class="text-sm text-dark/60">Framework React full-stack avec Turbopack. Server-Side Rendering, API routes, App Router.</p>
+<p class="text-xs font-mono text-dark/40 mt-3">+ React 19 + TypeScript 5</p>
+</div>
+<div class="neo-border bg-white p-6 neo-card reveal" style="transition-delay:.2s">
+<div class="w-12 h-12 bg-sags neo-border flex items-center justify-center mb-4"><span class="text-white font-bold text-lg">S</span></div>
+<h3 class="font-bold text-lg mb-2">Supabase</h3>
+<p class="text-sm text-dark/60">Base de donn&eacute;es PostgreSQL, authentification, stockage fichiers, temps r&eacute;el via WebSockets.</p>
+<p class="text-xs font-mono text-dark/40 mt-3">+ pgvector pour le RAG</p>
+</div>
+<div class="neo-border bg-white p-6 neo-card reveal" style="transition-delay:.3s">
+<div class="w-12 h-12 bg-neo-purple neo-border flex items-center justify-center mb-4"><span class="text-white font-bold text-lg">IA</span></div>
+<h3 class="font-bold text-lg mb-2">Claude + GPT</h3>
+<p class="text-sm text-dark/60">Claude Sonnet 4.6 pour la g&eacute;n&eacute;ration, Claude Haiku pour la vision, GPT-4o pour la relecture.</p>
+<p class="text-xs font-mono text-dark/40 mt-3">AI SDK v6 (Vercel)</p>
+</div>
+<div class="neo-border bg-white p-6 neo-card reveal" style="transition-delay:.4s">
+<div class="w-12 h-12 bg-neo-cyan neo-border flex items-center justify-center mb-4"><span class="text-white font-bold text-lg">UI</span></div>
+<h3 class="font-bold text-lg mb-2">Tailwind v4</h3>
+<p class="text-sm text-dark/60">Design system premium : Geist font, Phosphor Icons, Framer Motion, shadcn/ui.</p>
+<p class="text-xs font-mono text-dark/40 mt-3">+ Recharts, FullCalendar, Leaflet</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 4 : LES 5 ENTITÉS ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 4 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les 5 entit&eacute;s du Groupe</h2>
+<p class="text-lg text-dark/60 mb-10 reveal">Toute l'app est pens&eacute;e <strong>multi-entit&eacute;s</strong>. Chaque document, chaque agent, chaque site est rattach&eacute; &agrave; sa soci&eacute;t&eacute;.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<div class="neo-border bg-white p-5 text-center neo-card reveal"><div class="w-16 h-16 bg-sags/10 rounded-full mx-auto mb-3 flex items-center justify-center"><span class="text-sags font-bold text-xl">S</span></div><h4 class="font-bold">Groupe SAGS</h4><p class="text-xs font-mono text-dark/40 mt-1">SAGS</p></div>
+<div class="neo-border bg-white p-5 text-center neo-card reveal" style="transition-delay:.1s"><div class="w-16 h-16 bg-blue-50 rounded-full mx-auto mb-3 flex items-center justify-center"><span class="text-blue-600 font-bold text-xl">M</span></div><h4 class="font-bold">MAN S&eacute;curit&eacute;</h4><p class="text-xs font-mono text-dark/40 mt-1">MAN</p></div>
+<div class="neo-border bg-white p-5 text-center neo-card reveal" style="transition-delay:.2s"><div class="w-16 h-16 bg-purple-50 rounded-full mx-auto mb-3 flex items-center justify-center"><span class="text-purple-600 font-bold text-xl">MC</span></div><h4 class="font-bold">MC S&eacute;curit&eacute;</h4><p class="text-xs font-mono text-dark/40 mt-1">MC_SECU</p></div>
+<div class="neo-border bg-white p-5 text-center neo-card reveal" style="transition-delay:.3s"><div class="w-16 h-16 bg-emerald-50 rounded-full mx-auto mb-3 flex items-center justify-center"><span class="text-emerald-600 font-bold text-xl">MC</span></div><h4 class="font-bold">MC Gestion</h4><p class="text-xs font-mono text-dark/40 mt-1">MC_GEST</p></div>
+<div class="neo-border bg-white p-5 text-center neo-card reveal" style="transition-delay:.4s"><div class="w-16 h-16 bg-orange-50 rounded-full mx-auto mb-3 flex items-center justify-center"><span class="text-orange-600 font-bold text-xl">R</span></div><h4 class="font-bold">RAI Incendie</h4><p class="text-xs font-mono text-dark/40 mt-1">RAI</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 5 : LES CHIFFRES ===================== -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 5 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-12 reveal">L'app en chiffres</h2>
+<div class="grid grid-cols-2 lg:grid-cols-5 gap-6">
+<div class="reveal" style="transition-delay:.1s"><p class="text-5xl font-bold text-sags">293</p><p class="text-white/60 text-sm mt-2">fichiers source</p></div>
+<div class="reveal" style="transition-delay:.2s"><p class="text-5xl font-bold text-neo-yellow">21</p><p class="text-white/60 text-sm mt-2">routes API</p></div>
+<div class="reveal" style="transition-delay:.3s"><p class="text-5xl font-bold text-neo-blue">22</p><p class="text-white/60 text-sm mt-2">server actions</p></div>
+<div class="reveal" style="transition-delay:.4s"><p class="text-5xl font-bold text-neo-green">151</p><p class="text-white/60 text-sm mt-2">composants React</p></div>
+<div class="reveal" style="transition-delay:.5s"><p class="text-5xl font-bold text-neo-purple">30+</p><p class="text-white/60 text-sm mt-2">tables Supabase</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== PART 1 HEADER : FRONT-END ===================== -->
+<section id="frontend" class="py-20 cross-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+<div class="reveal">
+<span class="tag tag-red text-sm mb-4 inline-block">PARTIE 1</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">Le Front-End</h2>
+<p class="text-lg text-dark/60 max-w-2xl mx-auto">Comment l'application est construite c&ocirc;t&eacute; interface. Le dashboard, la navigation, le design system, le responsive.</p>
+<div class="divider max-w-[200px] mt-10"></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 6 : ARCHITECTURE DES PAGES ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 6 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Architecture des pages</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">L'app utilise le <strong>App Router</strong> de Next.js. Chaque page est une route. Voici la structure :</p>
+<div class="grid lg:grid-cols-2 gap-8">
+<div class="neo-border bg-white p-6 reveal">
+<h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="w-8 h-8 bg-sags text-white rounded flex items-center justify-center text-xs font-bold">A</span> Dashboard Admin</h3>
+<div class="code-block text-xs">
+<span class="cm">/dashboard</span> &rarr; Centre de commande (KPIs, graphiques)<br>
+<span class="cm">/dashboard/agents</span> &rarr; Gestion des agents (CRUD)<br>
+<span class="cm">/dashboard/clients</span> &rarr; Gestion des clients<br>
+<span class="cm">/dashboard/sites</span> &rarr; Gestion des sites (g&eacute;ofence)<br>
+<span class="cm">/dashboard/consignes</span> &rarr; Consignes de site<br>
+<span class="cm">/dashboard/planning</span> &rarr; Planning (FullCalendar)<br>
+<span class="cm">/dashboard/operations</span> &rarr; Bons de travail<br>
+<span class="cm">/dashboard/rondes</span> &rarr; Routes + checkpoints<br>
+<span class="cm">/dashboard/facturation</span> &rarr; Factures HT/TVA/TTC<br>
+<span class="cm">/dashboard/paie</span> &rarr; Pr&eacute;paies automatiques<br>
+<span class="cm">/dashboard/ged</span> &rarr; <span class="str">GED (nouveau !)</span><br>
+<span class="cm">/dashboard/memoire-technique</span> &rarr; G&eacute;n&eacute;rateur IA<br>
+<span class="cm">/dashboard/memoires</span> &rarr; IA Admin (chat RAG)
+</div>
+</div>
+<div class="neo-border bg-white p-6 reveal-right">
+<h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="w-8 h-8 bg-neo-green text-white rounded flex items-center justify-center text-xs font-bold">T</span> Portail Agent Terrain</h3>
+<div class="code-block text-xs">
+<span class="cm">/agent</span> &rarr; Accueil (shifts du jour, consignes urgentes)<br>
+<span class="cm">/agent/chat</span> &rarr; Chat IA contextuel<br>
+<span class="cm">/agent/planning</span> &rarr; Planning personnel<br>
+<span class="cm">/agent/profil</span> &rarr; Profil agent<br>
+<br>
+<span class="cm"># Le routage est automatique :</span><br>
+<span class="kw">agent_terrain</span> &rarr; redirig&eacute; vers <span class="str">/agent</span><br>
+<span class="kw">admin / exploitant</span> &rarr; redirig&eacute; vers <span class="str">/dashboard</span>
+</div>
+<div class="mt-6 p-4 bg-neo-green/5 border-2 border-neo-green/20 rounded-lg">
+<p class="text-sm text-dark/70"><strong>7 r&ocirc;les :</strong> admin, rh, exploitant, chef_site, superviseur, lecture_seule, agent_terrain. Chaque r&ocirc;le a ses permissions et ses pages.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 7 : LE LAYOUT DASHBOARD ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 7 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le layout du Dashboard</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Sur desktop, tu as une <strong>sidebar &agrave; gauche</strong> (r&eacute;tractable), un <strong>header sticky</strong> en haut avec le breadcrumb et les notifications, et le contenu au centre. Sur mobile, la sidebar dispara&icirc;t et une <strong>barre de navigation en bas</strong> la remplace.</p>
+<div class="neo-border bg-dark text-white p-6 rounded-lg reveal max-w-4xl mx-auto">
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="cm">// Composants du layout</span><br>
+&lt;<span class="fn">SidebarProvider</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span class="fn">AppSidebar</span> <span class="tp">user</span>=<span class="str">{userProfile}</span> /&gt; <span class="cm">// Desktop uniquement</span><br>
+&nbsp;&nbsp;&lt;<span class="fn">SidebarInset</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="fn">Header</span> <span class="tp">userId</span>=<span class="str">{user.id}</span> /&gt; <span class="cm">// Breadcrumb + notifs</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="kw">main</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="fn">MobileBottomNav</span> /&gt; <span class="cm">// Mobile uniquement</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">{children}</span> <span class="cm">// Contenu de la page</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="kw">main</span>&gt;<br>
+&nbsp;&nbsp;&lt;/<span class="fn">SidebarInset</span>&gt;<br>
+&lt;/<span class="fn">SidebarProvider</span>&gt;
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 8 : SIDEBAR EN DÉTAIL ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 8 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La sidebar en d&eacute;tail</h2>
+<p class="text-lg text-dark/60 mb-10 reveal">La sidebar regroupe toutes les pages en 5 cat&eacute;gories. Les modules marqu&eacute;s V2/V3 sont verrouill&eacute;s pour le moment &mdash; on les activera au fur et &agrave; mesure.</p>
+<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+<div class="neo-border bg-white p-4 reveal"><h4 class="font-bold text-sm mb-3 text-sags uppercase tracking-wider">Navigation</h4><ul class="space-y-2 text-sm"><li>Centre de commande</li><li class="text-dark/30">Rapports Kizeo <span class="tag text-[10px] py-0 px-1">V2</span></li><li>IA Admin</li><li>M&eacute;moire Technique</li><li class="text-dark/30">Consignes Sites <span class="tag text-[10px] py-0 px-1">V2</span></li><li class="font-bold text-sags">GED</li></ul></div>
+<div class="neo-border bg-white p-4 reveal" style="transition-delay:.1s"><h4 class="font-bold text-sm mb-3 text-neo-blue uppercase tracking-wider">Op&eacute;rations</h4><ul class="space-y-2 text-sm"><li class="text-dark/30">Planning <span class="tag text-[10px] py-0 px-1">V2</span></li><li class="text-dark/30">Op&eacute;rations <span class="tag text-[10px] py-0 px-1">V2</span></li><li class="text-dark/30">Rondes <span class="tag text-[10px] py-0 px-1">V2</span></li></ul></div>
+<div class="neo-border bg-white p-4 reveal" style="transition-delay:.2s"><h4 class="font-bold text-sm mb-3 text-neo-green uppercase tracking-wider">Ressources</h4><ul class="space-y-2 text-sm"><li class="text-dark/30">Agents <span class="tag text-[10px] py-0 px-1">V2</span></li><li class="text-dark/30">Clients <span class="tag text-[10px] py-0 px-1">V2</span></li><li>Sites</li></ul></div>
+<div class="neo-border bg-white p-4 reveal" style="transition-delay:.3s"><h4 class="font-bold text-sm mb-3 text-neo-orange uppercase tracking-wider">Finance</h4><ul class="space-y-2 text-sm"><li class="text-dark/30">Facturation <span class="tag text-[10px] py-0 px-1">V3</span></li><li class="text-dark/30">Paie <span class="tag text-[10px] py-0 px-1">V3</span></li><li class="text-dark/30">Documents <span class="tag text-[10px] py-0 px-1">V3</span></li></ul></div>
+<div class="neo-border bg-white p-4 reveal" style="transition-delay:.4s"><h4 class="font-bold text-sm mb-3 text-neo-purple uppercase tracking-wider">Syst&egrave;me</h4><ul class="space-y-2 text-sm"><li>Param&egrave;tres</li><li>Admin (si admin)</li></ul></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 9 : DESIGN SYSTEM ===================== -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 9 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-10 reveal">Le Design System</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="reveal">
+<h3 class="font-bold mb-4">Couleurs</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded bg-sags neo-border border-white/20"></div><div><p class="font-mono text-sm">#E80000</p><p class="text-white/50 text-xs">SAGS Red (primary)</p></div></div>
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded bg-cream neo-border border-white/20"></div><div><p class="font-mono text-sm">#FAFAF9</p><p class="text-white/50 text-xs">Off-white (background)</p></div></div>
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded bg-white neo-border border-white/20"></div><div><p class="font-mono text-sm">#FFFFFF</p><p class="text-white/50 text-xs">Pure white (cards)</p></div></div>
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded bg-dark border-2 border-white/30"></div><div><p class="font-mono text-sm">#0A0A0A</p><p class="text-white/50 text-xs">Dark (texte)</p></div></div>
+</div>
+</div>
+<div class="reveal" style="transition-delay:.2s">
+<h3 class="font-bold mb-4">Typographie</h3>
+<p class="text-4xl font-bold mb-2" style="font-family:system-ui">Geist Sans</p>
+<p class="text-sm text-white/50 mb-6">Police principale &mdash; install&eacute;e via le package npm <code class="bg-white/10 px-1 rounded text-xs">geist</code></p>
+<p class="text-xl font-mono mb-2">Geist Mono</p>
+<p class="text-sm text-white/50">Pour le code, les r&eacute;f&eacute;rences, les identifiants</p>
+</div>
+<div class="reveal" style="transition-delay:.4s">
+<h3 class="font-bold mb-4">Effets sp&eacute;ciaux</h3>
+<ul class="space-y-3 text-sm">
+<li class="flex items-center gap-2"><span class="w-3 h-3 bg-sags rounded-full animate-pulse-red"></span> Mesh gradient anim&eacute; (20s)</li>
+<li class="flex items-center gap-2"><span class="w-3 h-3 bg-white/30 rounded-full"></span> Noise overlay SVG (1.5% opacit&eacute;)</li>
+<li class="flex items-center gap-2"><span class="w-3 h-3 bg-neo-cyan rounded-full"></span> Shimmer loading</li>
+<li class="flex items-center gap-2"><span class="w-3 h-3 bg-neo-yellow rounded-full"></span> Page-enter animation</li>
+<li class="flex items-center gap-2"><span class="w-3 h-3 bg-neo-green rounded-full"></span> Framer Motion transitions</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 10 : Z-INDEX ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 10 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Hi&eacute;rarchie Z-Index</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque &eacute;l&eacute;ment a son niveau de profondeur pour &eacute;viter les conflits visuels :</p>
+<div class="max-w-2xl mx-auto space-y-3 reveal">
+<div class="flex items-center gap-4 neo-border bg-white p-4"><span class="font-mono text-sags font-bold w-24">z-9999</span><span class="text-sm">Menus d&eacute;roulants (Select, Popover, Dropdown)</span></div>
+<div class="flex items-center gap-4 neo-border bg-white p-4"><span class="font-mono text-sags font-bold w-24">z-50</span><span class="text-sm">Dialogs et modales</span></div>
+<div class="flex items-center gap-4 neo-border bg-white p-4"><span class="font-mono text-sags font-bold w-24">z-40</span><span class="text-sm">Header, navigation mobile, noise overlay</span></div>
+<div class="flex items-center gap-4 neo-border bg-white p-4"><span class="font-mono text-sags font-bold w-24">z-10</span><span class="text-sm">Contenu principal</span></div>
+<div class="flex items-center gap-4 neo-border bg-white p-4"><span class="font-mono text-sags font-bold w-24">z-0</span><span class="text-sm">Mesh gradient d'arri&egrave;re-plan</span></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== PART 2 HEADER : MÉMOIRE TECHNIQUE ===================== -->
+<section id="memoire" class="py-20 bg-sags text-white relative overflow-hidden">
+<div class="absolute inset-0 dot-bg opacity-10"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+<div class="reveal">
+<span class="tag bg-white text-sags text-sm mb-4 inline-block border-white">PARTIE 2</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">M&eacute;moire Technique IA</h2>
+<p class="text-lg text-white/80 max-w-2xl mx-auto">Le g&eacute;n&eacute;rateur automatique de m&eacute;moires techniques &agrave; partir de vos CCTP. R&eacute;dig&eacute; par <strong>Claude Sonnet 4.6</strong>, double review par <strong>GPT-5.4-mini</strong> + <strong>Claude Sonnet 4.6</strong>. Pipeline V2 industriel.</p>
+<div class="divider max-w-[200px] mt-10" style="background:repeating-linear-gradient(90deg,white 0,white 8px,transparent 8px,transparent 16px)"></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 11 : MT - C'EST QUOI ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 11 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-6 reveal">Comment &ccedil;a marche ?</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">En <strong>3 &eacute;tapes</strong>, tu passes d'un CCTP brut &agrave; un m&eacute;moire technique complet de 20 &agrave; 60 pages, pr&ecirc;t &agrave; exporter en PDF ou DOCX.</p>
+<div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
+<div class="flex items-center gap-3"><div class="step-dot step-done">1</div><span class="font-bold">Document</span><span class="text-dark/40 text-sm">&mdash; Charge ton CCTP</span></div>
+<div class="text-2xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-3"><div class="step-dot step-done">2</div><span class="font-bold">Param&egrave;tres</span><span class="text-dark/40 text-sm">&mdash; Configure le m&eacute;moire</span></div>
+<div class="text-2xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-3"><div class="step-dot step-active">3</div><span class="font-bold">G&eacute;n&eacute;ration</span><span class="text-dark/40 text-sm">&mdash; T&eacute;l&eacute;charge le r&eacute;sultat</span></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 12 : MT - LISTING ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 12 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La page d'accueil M&eacute;moire Technique</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tous tes m&eacute;moires sont affich&eacute;s sous forme de cartes. Tu vois le titre, le client, le nombre de pages, la date, et surtout le <strong>statut</strong> : Termin&eacute;, Plan g&eacute;n&eacute;r&eacute;, En cours...</p>
+<img src="img/screenshots/mt-listing.jpeg" alt="M&eacute;moire Technique - Listing" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 13 : MT - NOUVEAU ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 13 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Cr&eacute;er un nouveau m&eacute;moire</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu cliques sur <strong>&laquo; + Nouveau m&eacute;moire &raquo;</strong>, tu renseignes le titre du march&eacute;, le client / donneur d'ordre, et le type de prestation (Gardiennage, SSIAP, Rondes, &Eacute;v&eacute;nementiel, Alarme, Intervention, Cynophile, Chantier).</p>
+<img src="img/screenshots/mt-new-dialog.jpeg" alt="Nouveau m&eacute;moire technique" class="screenshot reveal max-w-3xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 14 : MT - UPLOAD CCTP ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 14 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 1 : Charger le CCTP</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu uploades ton fichier CCTP (PDF ou DOCX). L'IA va l'analyser : extraction du texte, identification des sections, rep&eacute;rage des exigences. Le fichier est stock&eacute; dans Supabase Storage, et le texte est extrait c&ocirc;t&eacute; serveur avec <code class="bg-dark/5 px-2 py-0.5 rounded text-sm font-mono">unpdf</code> (pour les PDF) et <code class="bg-dark/5 px-2 py-0.5 rounded text-sm font-mono">mammoth</code> (pour les DOCX).</p>
+<img src="img/screenshots/mt-upload.jpeg" alt="Upload CCTP" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 15 : MT - PARAMETRES ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 15 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 2 : Les param&egrave;tres</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">C'est ici que tu configures pr&eacute;cis&eacute;ment ce que l'IA va g&eacute;n&eacute;rer. Tu choisis :</p>
+<div class="grid lg:grid-cols-2 gap-8">
+<div class="space-y-4 reveal">
+<div class="neo-border bg-white p-4"><strong>Mode de r&eacute;daction :</strong> <em>Libre</em> (22 sections, 15 IA + 7 template) ou <em>Impos&eacute;</em> (template du client)</div>
+<div class="neo-border bg-white p-4"><strong>Logo du client :</strong> tu uploades le logo pour le branding du m&eacute;moire</div>
+<div class="neo-border bg-white p-4"><strong>Type de march&eacute; :</strong> Gardiennage, SSIAP, Rondes, &Eacute;v&eacute;nementiel, Installation Alarme, Intervention, Cynophile, Gardiennage Chantier</div>
+<div class="neo-border bg-white p-4"><strong>Tonalit&eacute; :</strong> Formel (march&eacute;s publics), Technique (d&eacute;taill&eacute;), Commercial (valorisant)</div>
+<div class="neo-border bg-white p-4"><strong>Pages cibles :</strong> 20p, 30p, 40p, 50p ou 60p</div>
+</div>
+<img src="img/screenshots/mt-params.jpeg" alt="Param&egrave;tres m&eacute;moire" class="screenshot reveal-right">
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 16 : MT - MENTIONS ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 16 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Mentions obligatoires &amp; sections</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu coches ce que tu veux inclure dans le m&eacute;moire : Autorisation CNAPS, Certifications SSIAP/SST, Moyens humains, Engagement QSE, R&eacute;f&eacute;rences clients... Et les sections obligatoires : Organigramme, Planning, R&eacute;f&eacute;rences, Chiffrage.</p>
+<img src="img/screenshots/mt-mentions.jpeg" alt="Mentions et sections" class="screenshot reveal max-w-4xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 17 : MT - SCORE QUALITÉ ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 17 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 3 : G&eacute;n&eacute;ration + Score qualit&eacute;</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Une fois g&eacute;n&eacute;r&eacute;, le m&eacute;moire passe par une <strong>boucle de double review</strong> (GPT-5.4-mini + Claude Sonnet 4.6) avec un score cible de <strong>55/60</strong>. L'UI affiche les logs de contr&ocirc;le par groupe : Organisation, Op&eacute;rations, Qualit&eacute;/RSE, Formation. Chaque crit&egrave;re a sa barre de progression.</p>
+<img src="img/screenshots/mt-score.jpeg" alt="Score qualit&eacute;" class="screenshot reveal max-w-5xl mx-auto">
+<div class="mt-8 highlight-box py-4 reveal">
+<p class="font-medium">Ici on voit les logs de contr&ocirc;le post-g&eacute;n&eacute;ration. Chaque groupe (Op&eacute;rations, Qualit&eacute;/RSE, Formation...) affiche son ratio <strong>trouv&eacute;/total</strong> et son pourcentage de confiance. Le score est calcul&eacute; sur <strong>/60</strong> par la dual review GPT-5.4-mini + Sonnet 4.6. Le seuil de validation est <strong>55/60</strong>.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 18 : MT - EXPORT ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 18 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Export PDF contr&ocirc;l&eacute;</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">L'interface m&eacute;moire est centr&eacute;e sur le <strong>PDF</strong>. L'export n'est pas un rendu aveugle &mdash; il relance sa propre validation (<code class="font-mono bg-dark/5 px-1 rounded text-sm">validateMemoireExport</code>) pour v&eacute;rifier placeholders, accents, vocabulaire hors-sujet, et couverture CCTP. Si le m&eacute;moire &eacute;choue aux quality gates, l'export est <strong>bloqu&eacute;</strong>.</p>
+<div class="grid lg:grid-cols-2 gap-8 items-center">
+<img src="img/screenshots/mt-download.jpeg" alt="T&eacute;l&eacute;chargement DOCX" class="screenshot reveal">
+<div class="reveal-right">
+<h3 class="font-bold text-lg mb-4">Technologies d'export</h3>
+<div class="space-y-3">
+<div class="neo-border bg-white p-4 flex items-center gap-3"><span class="tag tag-blue text-xs">PDF</span><span class="text-sm">G&eacute;n&eacute;r&eacute; avec <strong>@react-pdf/renderer</strong> c&ocirc;t&eacute; serveur. Couverture, TOC auto, logo dans le header, blockquotes avec bordure rouge.</span></div>
+<div class="neo-border bg-white p-4 flex items-center gap-3"><span class="tag tag-green text-xs">DOCX</span><span class="text-sm">G&eacute;n&eacute;r&eacute; avec la lib <strong>docx</strong> v9.6. Tables, images int&eacute;gr&eacute;es, captions, header/footer dynamiques. Branding SAGS #E80000.</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 19 : MT - SOUS LE CAPOT ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 19 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Sous le capot : l'IA de g&eacute;n&eacute;ration</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Voici le <strong>pipeline V2 complet</strong> &mdash; ce qui se passe quand tu cliques &laquo; G&eacute;n&eacute;rer &raquo; :</p>
+<div class="max-w-3xl mx-auto space-y-4 reveal">
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">1</div><div><strong>Extraction &amp; diagnostics CCTP</strong><p class="text-sm text-dark/60 mt-1"><code class="font-mono text-xs bg-dark/5 px-1 rounded">unpdf</code> (PDF page par page avec marqueur [PAGE N]) ou <code class="font-mono text-xs bg-dark/5 px-1 rounded">mammoth</code> (DOCX). D&eacute;tection des CCTP &laquo; &eacute;cras&eacute;s &raquo; avec re-extraction. Diagnostics : caract&egrave;res, mots, lignes, pages, blocs.</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">2</div><div><strong>Profilage CCTP (<code class="font-mono text-xs">cctpProfile</code>)</strong><p class="text-sm text-dark/60 mt-1">Extraction structur&eacute;e : sites nominatifs, horaires, livrables, d&eacute;lais, contraintes op&eacute;rationnelles, termes de validation. D&eacute;tection de la famille de march&eacute;.</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">3</div><div><strong>Plan canonique + Blueprint m&eacute;tier</strong><p class="text-sm text-dark/60 mt-1">Construction du plan : mode libre/impos&eacute;, objectif pages/mots, matrice exigences &rarr; sections, sch&eacute;mas (organigrammes, plannings, logigrammes). R&eacute;solution du blueprint par famille (titres, sous-sections, lexique hors-sujet).</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">4</div><div><strong>RAG Supabase (FTS + tags march&eacute;)</strong><p class="text-sm text-dark/60 mt-1">Recherche Full-Text via <code class="font-mono text-xs bg-dark/5 px-1 rounded">search_rag_chunks_fts</code> avec biais de r&eacute;cence et boost qualit&eacute;. Filtrage par tags march&eacute;. Le CCTP reste la source primaire, le RAG enrichit.</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">5</div><div><strong>R&eacute;daction par Claude Sonnet 4.6</strong><p class="text-sm text-dark/60 mt-1">G&eacute;n&eacute;ration par lots (batching). Prompt syst&egrave;me avec : CCTP = source primaire, sites/horaires/d&eacute;lais explicites, accents obligatoires, z&eacute;ro placeholder, claims prouv&eacute;s uniquement. Temp 0.35.</p></div></div>
+<div class="neo-border bg-neo-purple/10 border-neo-purple p-5 flex gap-4"><div class="step-dot step-active shrink-0 bg-neo-purple border-neo-purple">6</div><div><strong>Double review : GPT-5.4-mini + Claude Sonnet 4.6</strong><p class="text-sm text-dark/60 mt-1">Deux reviewers jugent en parall&egrave;le. Issues et patchs fusionn&eacute;s. <strong>Score le plus s&eacute;v&egrave;re retenu.</strong> Crit&egrave;res bloquants : m&eacute;moire g&eacute;n&eacute;rique, sites manquants, horaires absents, placeholders, accents, hors-sujet.</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-active shrink-0">7</div><div><strong>Boucle corrective (max 3 it&eacute;rations)</strong><p class="text-sm text-dark/60 mt-1">Si score &lt; 55/60 ou blocages : Claude Sonnet 4.6 corrige sur base des <code class="font-mono text-xs bg-dark/5 px-1 rounded">patch_instructions</code>, puis re-review. Jusqu'&agrave; validation ou plafond.</p></div></div>
+<div class="neo-border bg-white p-5 flex gap-4"><div class="step-dot step-done shrink-0">8</div><div><strong>Quality gates + export</strong><p class="text-sm text-dark/60 mt-1">Validation export : placeholders, accents m&eacute;tier, vocab hors-sujet, claims non prouv&eacute;s, couverture CCTP (sites, horaires, livrables, termes). Si &eacute;chec = export bloqu&eacute;.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 20 : MT - BLACKLIST IA ===================== -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 20 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La blacklist anti-IA</h2>
+<p class="text-lg text-white/60 mb-8 reveal">Pour que le m&eacute;moire sonne <strong>naturel</strong> et pas &laquo; &eacute;crit par un robot &raquo;, on interdit 16 expressions :</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 reveal">
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Il convient de noter &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Force est de constater &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Dans un souci de &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Il va sans dire &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Nous nous engageons &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Notre expertise &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Nos comp&eacute;tences &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Nous mettons en &oelig;uvre &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Au c&oelig;ur de &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Fort de notre &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; En toute transparence &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Afin de garantir &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; &Agrave; cet &eacute;gard &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; En effet &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; N&eacute;anmoins &raquo;</div>
+<div class="bg-white/5 border border-white/10 p-3 rounded text-sm">&laquo; Par cons&eacute;quent &raquo;</div>
+</div>
+<p class="text-white/40 text-sm mt-6 reveal">Le r&eacute;sultat : un m&eacute;moire qui sonne comme du Jalil, pas comme du ChatGPT.</p>
+</div>
+</section>
+
+<!-- ===================== SECTION 21 : MT - FAMILLES DE MARCHÉ ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 21 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les 6 familles de march&eacute;</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le syst&egrave;me ne traite pas tous les march&eacute;s de la m&ecirc;me fa&ccedil;on. La couche <code class="font-mono bg-dark/5 px-1 rounded text-sm">market-rules.ts</code> d&eacute;tecte automatiquement la famille &agrave; partir du CCTP et adapte toute la cha&icirc;ne : structure, vocabulaire, sections, review, score.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="neo-border bg-white p-5 neo-card reveal"><h4 class="font-bold text-sags mb-2">parcs_jardins</h4><p class="text-sm text-dark/60">Parcs, espaces verts, rondes ext&eacute;rieures. Impose sites, horaires, itin&eacute;raires de ronde.</p></div>
+<div class="neo-border bg-white p-5 neo-card reveal" style="transition-delay:.1s"><h4 class="font-bold text-sags mb-2">site_administratif</h4><p class="text-sm text-dark/60">B&acirc;timents administratifs, si&egrave;ges sociaux. Focus s&ucirc;ret&eacute;, contr&ocirc;le d'acc&egrave;s, accueil.</p></div>
+<div class="neo-border bg-white p-5 neo-card reveal" style="transition-delay:.2s"><h4 class="font-bold text-sags mb-2">chantier</h4><p class="text-sm text-dark/60">Chantiers BTP, zones sensibles. Garde statique, rondes p&eacute;rim&eacute;triques, relev&eacute;s.</p></div>
+<div class="neo-border bg-white p-5 neo-card reveal" style="transition-delay:.3s"><h4 class="font-bold text-sags mb-2">erp_musee</h4><p class="text-sm text-dark/60">Mus&eacute;es, ERP. SSIAP, flux public, &eacute;vacuation, acc&egrave;s PMR.</p></div>
+<div class="neo-border bg-white p-5 neo-card reveal" style="transition-delay:.4s"><h4 class="font-bold text-sags mb-2">evenementiel</h4><p class="text-sm text-dark/60">&Eacute;v&eacute;nements, festivals. Dispositif temporaire, PC s&eacute;curit&eacute;, flux.</p></div>
+<div class="neo-border bg-neo-orange/10 border-3 border-neo-orange p-5 neo-card reveal" style="transition-delay:.5s"><h4 class="font-bold text-neo-orange mb-2">alarme_maintenance</h4><p class="text-sm text-dark/60">Maintenance pr&eacute;ventive/curative, stock, devis, t&eacute;l&eacute;gestion. <strong>P&eacute;nalise</strong> CNAPS, SSIAP, rondes, PTI, DATI. Logique int&eacute;grateur, pas s&eacute;curit&eacute; humaine.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 22 : MT - BLUEPRINT MÉTIER ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 22 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le blueprint m&eacute;tier (<code class="font-mono">market-structure.ts</code>)</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque famille de march&eacute; a son <strong>blueprint</strong> qui transforme la structure g&eacute;n&eacute;rique en structure sp&eacute;cialis&eacute;e. Le blueprint fournit :</p>
+<div class="grid md:grid-cols-2 gap-6 reveal">
+<div class="space-y-3">
+<div class="neo-border bg-white p-4"><strong>Titres de sections</strong> adapt&eacute;s au m&eacute;tier (ex: &laquo; Organisation du poste &raquo; devient &laquo; Organisation de la maintenance &raquo;)</div>
+<div class="neo-border bg-white p-4"><strong>Sous-sections</strong> sp&eacute;cifiques (pr&eacute;ventif, correctif, stock, t&eacute;l&eacute;gestion...)</div>
+<div class="neo-border bg-white p-4"><strong>R&egrave;gles d'&eacute;criture</strong> et de review par march&eacute;</div>
+<div class="neo-border bg-white p-4"><strong>Lexique hors-sujet</strong> &mdash; termes &agrave; p&eacute;naliser si pr&eacute;sents</div>
+<div class="neo-border bg-white p-4"><strong>Overrides de prompts</strong> pour le r&eacute;dacteur et le reviewer</div>
+</div>
+<div class="neo-border bg-dark text-white p-6 rounded-lg">
+<h4 class="text-sags font-bold mb-3">Exemple : alarme_maintenance</h4>
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="cm">// Termes p&eacute;nalis&eacute;s :</span><br>
+<span class="str">"CNAPS"</span>, <span class="str">"SSIAP"</span>, <span class="str">"prise de poste"</span>,<br>
+<span class="str">"rondes"</span>, <span class="str">"PTI"</span>, <span class="str">"DATI"</span>, <span class="str">"passation"</span><br><br>
+<span class="cm">// Termes valoris&eacute;s :</span><br>
+<span class="str">"maintenance pr&eacute;ventive"</span>,<br>
+<span class="str">"maintenance corrective"</span>,<br>
+<span class="str">"pi&egrave;ces et stocks"</span>,<br>
+<span class="str">"t&eacute;l&eacute;gestion"</span>,<br>
+<span class="str">"documents d'exploitation"</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 23 : MT - CCTP PROFILE ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 23 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le profilage CCTP (<code class="font-mono">cctp-profile.ts</code>)</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">C'est le <strong>pivot central</strong> du pipeline. Le cctpProfile extrait de mani&egrave;re structur&eacute;e toutes les donn&eacute;es cl&eacute;s du CCTP pour piloter la g&eacute;n&eacute;ration, la review ET l'export.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">ruleIds / ruleLabels</span><p class="text-xs text-dark/60 mt-1">Familles de march&eacute; d&eacute;tect&eacute;es</p></div>
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">sites / siteNames</span><p class="text-xs text-dark/60 mt-1">Sites nominatifs extraits (avec filtre anti faux-positifs)</p></div>
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">schedules</span><p class="text-xs text-dark/60 mt-1">Horaires impos&eacute;s par le CCTP</p></div>
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">deliverables</span><p class="text-xs text-dark/60 mt-1">Livrables attendus (rapports, bilans, annexes)</p></div>
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">operationalConstraints</span><p class="text-xs text-dark/60 mt-1">Contraintes sp&eacute;cifiques (d&eacute;lais, qualifs, EPI)</p></div>
+<div class="neo-border bg-white p-4"><span class="text-sags font-mono text-xs font-bold">validationTerms</span><p class="text-xs text-dark/60 mt-1">Termes de conformit&eacute; &agrave; reprendre</p></div>
+</div>
+<div class="mt-8 highlight-box py-4 reveal">
+<p class="text-sm"><strong>Ce profil sert &agrave; :</strong> piloter le blueprint, injecter les objets r&eacute;els dans les prompts, calculer la couverture m&eacute;moire vs CCTP, durcir la review, et contr&ocirc;ler l'export. Sans cctpProfile, le m&eacute;moire serait g&eacute;n&eacute;rique.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 24 : MT - PLAN CANONIQUE ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 24 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le plan canonique (<code class="font-mono">plan.ts</code>)</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le plan canonique est l'objet unique qui synchronise toute la cha&icirc;ne. Sans lui, le syst&egrave;me ne ferait qu'encha&icirc;ner des prompts. Avec lui, on a un <strong>objet de pilotage</strong> qui lie structure, exigences, qualit&eacute; et export.</p>
+<div class="neo-border bg-dark text-white p-6 rounded-lg reveal max-w-3xl mx-auto">
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="kw">canonicalPlan</span> = {<br>
+&nbsp;&nbsp;<span class="fn">mode</span>: <span class="str">"libre"</span> | <span class="str">"impos&eacute;"</span>,<br>
+&nbsp;&nbsp;<span class="fn">targetPages</span>: <span class="num">40</span>,<br>
+&nbsp;&nbsp;<span class="fn">targetWords</span>: <span class="num">12000</span>,<br>
+&nbsp;&nbsp;<span class="fn">sections</span>: [<span class="cm">// liste ordonn&eacute;e des sections</span>],<br>
+&nbsp;&nbsp;<span class="fn">requirementRecords</span>: [<span class="cm">// exigences CCTP extract&eacute;es</span>],<br>
+&nbsp;&nbsp;<span class="fn">coverageMatrix</span>: { <span class="cm">// section &rarr; exigences</span> },<br>
+&nbsp;&nbsp;<span class="fn">schemaArtifacts</span>: { <span class="cm">// organigrammes, plannings</span> },<br>
+&nbsp;&nbsp;<span class="fn">cctpProfile</span>: { <span class="cm">// profil structur&eacute;</span> }<br>
+}
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 25 : MT - DUAL REVIEW DÉTAIL ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 25 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La boucle de double review (<code class="font-mono">review-loop.ts</code>)</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">C'est le c&oelig;ur du contr&ocirc;le qualit&eacute;. Deux mod&egrave;les IA ind&eacute;pendants jugent le m&eacute;moire. La lecture la plus s&eacute;v&egrave;re gagne. Si &eacute;chec, on corrige et on recommence.</p>
+<div class="grid lg:grid-cols-2 gap-8">
+<div class="space-y-4 reveal">
+<div class="neo-border bg-neo-green/5 p-5">
+<h4 class="font-bold text-neo-green mb-2">Reviewer OpenAI</h4>
+<div class="space-y-1 text-sm">
+<p><strong>Primaire :</strong> <code class="font-mono bg-dark/5 px-1 rounded text-xs">gpt-5.4-mini</code></p>
+<p><strong>Fallback 1 :</strong> <code class="font-mono bg-dark/5 px-1 rounded text-xs">gpt-5-mini</code></p>
+<p><strong>Fallback 2 :</strong> <code class="font-mono bg-dark/5 px-1 rounded text-xs">gpt-4o</code></p>
+</div>
+</div>
+<div class="neo-border bg-neo-purple/5 p-5">
+<h4 class="font-bold text-neo-purple mb-2">Reviewer Anthropic</h4>
+<p class="text-sm"><strong>Mod&egrave;le :</strong> <code class="font-mono bg-dark/5 px-1 rounded text-xs">claude-sonnet-4-6</code></p>
+<p class="text-sm mt-1">M&ecirc;me mod&egrave;le que le r&eacute;dacteur, mais avec un prompt reviewer sp&eacute;cifique.</p>
+</div>
+</div>
+<div class="reveal-right">
+<h4 class="font-bold mb-4">R&egrave;gle de fusion</h4>
+<div class="space-y-3 text-sm">
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Les issues des deux reviewers sont <strong>fusionn&eacute;es</strong></div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Les patchs sont <strong>fusionn&eacute;s</strong></div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Le <strong>score le plus s&eacute;v&egrave;re</strong> est retenu</div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Le verdict mentionne les <strong>deux scores</strong></div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Score cible : <strong>55/60</strong></div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Max <strong>3 it&eacute;rations</strong> de correction</div>
+<div class="flex items-start gap-2"><span class="text-sags font-bold shrink-0">&bull;</span>Z&eacute;ro blocage requis (<code class="font-mono bg-dark/5 px-1 rounded text-xs">REQUIRE_NO_BLOCKING=true</code>)</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 26 : MT - CRITÈRES BLOQUANTS ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 26 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les crit&egrave;res bloquants du reviewer</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Un reviewer consid&egrave;re comme <strong>bloquant</strong> (= pas d'export possible) :</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">M&eacute;moire trop g&eacute;n&eacute;rique</span><p class="text-xs text-dark/60 mt-1">Ne r&eacute;pond pas sp&eacute;cifiquement au CCTP</p></div>
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">Sites nominatifs absents</span><p class="text-xs text-dark/60 mt-1">Si le CCTP nomme des sites, ils doivent appara&icirc;tre</p></div>
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">Horaires / d&eacute;lais manquants</span><p class="text-xs text-dark/60 mt-1">Obligations temporelles du CCTP non reprises</p></div>
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">Livrables critiques oubli&eacute;s</span><p class="text-xs text-dark/60 mt-1">Rapports, bilans, annexes demand&eacute;s</p></div>
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">Placeholders visibles</span><p class="text-xs text-dark/60 mt-1">&laquo; &Agrave; compl&eacute;ter &raquo;, &laquo; Si retenu &raquo;, &laquo; Cf annexe &raquo;</p></div>
+<div class="neo-border bg-red-50 p-4 border-red-300"><span class="text-red-600 font-bold text-sm">Accents manquants</span><p class="text-xs text-dark/60 mt-1">&laquo; securite &raquo; au lieu de &laquo; s&eacute;curit&eacute; &raquo;</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 27 : MT - EXPORT VALIDATION ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 27 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Quality Gates avant export (<code class="font-mono">export-validation.ts</code>)</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">L'export PDF n'est pas un simple &laquo; t&eacute;l&eacute;chargement &raquo;. Il relance sa propre validation. M&ecirc;me un m&eacute;moire sauvegard&eacute; il y a longtemps est re-v&eacute;rifi&eacute; avant sortie.</p>
+<div class="grid md:grid-cols-2 gap-6 reveal">
+<div class="space-y-3">
+<h4 class="font-bold">Ce qui est contr&ocirc;l&eacute;</h4>
+<div class="neo-border bg-white p-3 text-sm">Placeholders historiques (<em>&Agrave; compl&eacute;ter, Si retenu, Cf annexe...</em>)</div>
+<div class="neo-border bg-white p-3 text-sm">Accents manquants sur mots m&eacute;tier (<em>securite, surete, qualite, controle, materiel, methodologie...</em>)</div>
+<div class="neo-border bg-white p-3 text-sm">Vocabulaire hors-sujet par famille de march&eacute;</div>
+<div class="neo-border bg-white p-3 text-sm">Claims non support&eacute;s par des preuves</div>
+<div class="neo-border bg-white p-3 text-sm">Sch&eacute;mas demand&eacute;s mais non aliment&eacute;s</div>
+<div class="neo-border bg-white p-3 text-sm">Couverture CCTP (sites, horaires, livrables, termes)</div>
+</div>
+<div>
+<h4 class="font-bold mb-3">Score de couverture CCTP</h4>
+<div class="neo-border bg-dark text-white p-5 rounded-lg">
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="fn">matchedSiteNames</span> / <span class="tp">missingSiteNames</span><br>
+<span class="fn">matchedSchedules</span> / <span class="tp">missingSchedules</span><br>
+<span class="fn">matchedDeliverables</span> / <span class="tp">missingDeliverables</span><br>
+<span class="fn">matchedValidationTerms</span> / <span class="tp">missingValidationTerms</span><br><br>
+<span class="cm">// Score de personnalisation utilis&eacute; par :</span><br>
+<span class="cm">// - la validation export</span><br>
+<span class="cm">// - le score qualit&eacute;</span><br>
+<span class="cm">// - les warnings UI</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 28 : MT - MODÈLES IA RECAP ===================== -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 28 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">R&eacute;cap des mod&egrave;les IA du pipeline m&eacute;moire</h2>
+<p class="text-lg text-white/60 mb-8 reveal">Chaque &eacute;tape utilise le mod&egrave;le optimal pour sa t&acirc;che :</p>
+<div class="max-w-4xl mx-auto reveal">
+<table class="w-full text-sm">
+<thead><tr class="border-b border-white/20"><th class="text-left p-3 text-sags">&Eacute;tape</th><th class="text-left p-3 text-sags">Mod&egrave;le</th><th class="text-left p-3 text-sags">Variable config</th></tr></thead>
+<tbody>
+<tr class="border-b border-white/10"><td class="p-3">R&eacute;daction</td><td class="p-3 font-mono text-neo-purple">claude-sonnet-4-6</td><td class="p-3 font-mono text-white/40 text-xs">MEMOIRE_WRITER_MODEL</td></tr>
+<tr class="border-b border-white/10"><td class="p-3">Review primaire</td><td class="p-3 font-mono text-neo-green">gpt-5.4-mini</td><td class="p-3 font-mono text-white/40 text-xs">MEMOIRE_REVIEW_MODEL_PRIMARY</td></tr>
+<tr class="border-b border-white/10"><td class="p-3">Review fallback 1</td><td class="p-3 font-mono text-neo-yellow">gpt-5-mini</td><td class="p-3 font-mono text-white/40 text-xs">MEMOIRE_REVIEW_MODEL_FALLBACK_1</td></tr>
+<tr class="border-b border-white/10"><td class="p-3">Review fallback 2</td><td class="p-3 font-mono text-neo-orange">gpt-4o</td><td class="p-3 font-mono text-white/40 text-xs">MEMOIRE_REVIEW_MODEL_FALLBACK_2</td></tr>
+<tr class="border-b border-white/10"><td class="p-3">Review Anthropic</td><td class="p-3 font-mono text-neo-purple">claude-sonnet-4-6</td><td class="p-3 font-mono text-white/40 text-xs">MEMOIRE_REVIEW_MODEL_ANTHROPIC</td></tr>
+<tr class="border-b border-white/10"><td class="p-3">Correction</td><td class="p-3 font-mono text-neo-purple">claude-sonnet-4-6</td><td class="p-3 font-mono text-white/40 text-xs">(m&ecirc;me que writer)</td></tr>
+<tr><td class="p-3">Parsing template</td><td class="p-3 font-mono text-neo-purple">claude-sonnet-4-6</td><td class="p-3 font-mono text-white/40 text-xs">&mdash;</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 p-4 bg-white/5 border border-white/10 rounded max-w-4xl mx-auto reveal">
+<p class="text-white/60 text-sm"><strong class="text-sags">Pourquoi dual review ?</strong> Un seul reviewer cr&eacute;e un biais. Deux reviewers ind&eacute;pendants (OpenAI + Anthropic) avec fusion de la lecture la plus s&eacute;v&egrave;re &eacute;liminent les faux n&eacute;gatifs <em>et</em> les faux positifs.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 29 : MT - COMPANY PROFILE ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 29 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Profil entreprise &amp; registre de preuves</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Deux fichiers cl&eacute;s contr&ocirc;lent ce que l'IA a le droit d'affirmer sur SAGS :</p>
+<div class="grid md:grid-cols-2 gap-6 reveal">
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold text-sags mb-3"><code class="font-mono text-sm">company-profile.ts</code></h4>
+<ul class="space-y-2 text-sm text-dark/70">
+<li><strong>Identit&eacute; entreprise</strong> &mdash; raison sociale, adresses, SIRET</li>
+<li><strong>R&ocirc;les cl&eacute;s</strong> &mdash; directeurs, responsables</li>
+<li><strong>Outils</strong> &mdash; SAGS OS, Kizeo, etc.</li>
+<li><strong>Lignes de service</strong> &mdash; gardiennage, SSIAP, alarme...</li>
+<li><strong>Claims sensibles</strong> &mdash; ce qui ne peut pas &ecirc;tre affirm&eacute; sans preuve</li>
+</ul>
+</div>
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold text-sags mb-3"><code class="font-mono text-sm">evidence-registry.ts</code></h4>
+<ul class="space-y-2 text-sm text-dark/70">
+<li><strong>Faits autoris&eacute;s</strong> &mdash; liste blanche de claims prouv&eacute;s</li>
+<li><strong>Claims interdits</strong> &mdash; sans preuve = bloqu&eacute;</li>
+<li><strong>D&eacute;tection d'all&eacute;gations</strong> &mdash; le reviewer v&eacute;rifie</li>
+<li><strong>Suivi des preuves</strong> &mdash; quels faits ont &eacute;t&eacute; utilis&eacute;s</li>
+<li><strong>Filtrage par march&eacute;</strong> &mdash; pas de &laquo; gardiennage &raquo; sur march&eacute; alarme</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 30 : MT - ARBORESCENCE FICHIERS ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 30 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">L'arborescence du sous-syst&egrave;me m&eacute;moire</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">16 fichiers d&eacute;di&eacute;s r&eacute;partis en 3 couches :</p>
+<div class="grid lg:grid-cols-3 gap-6 reveal">
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold text-neo-blue mb-3">API Routes (5)</h4>
+<div class="space-y-1 text-xs font-mono text-dark/70">
+<p>api/memoire-technique/<strong>generate</strong>/route.ts</p>
+<p>api/memoire-technique/<strong>review</strong>/route.ts</p>
+<p>api/memoire-technique/<strong>export-pdf</strong>/route.ts</p>
+<p>api/memoire-technique/<strong>export-docx</strong>/route.ts</p>
+<p>api/memoire-technique/<strong>parse-template</strong>/route.ts</p>
+</div>
+</div>
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold text-neo-purple mb-3">Lib M&eacute;tier (8)</h4>
+<div class="space-y-1 text-xs font-mono text-dark/70">
+<p>lib/memoire/<strong>cctp-text</strong>.ts</p>
+<p>lib/memoire/<strong>cctp-profile</strong>.ts</p>
+<p>lib/memoire/<strong>market-rules</strong>.ts</p>
+<p>lib/memoire/<strong>market-structure</strong>.ts</p>
+<p>lib/memoire/<strong>company-profile</strong>.ts</p>
+<p>lib/memoire/<strong>evidence-registry</strong>.ts</p>
+<p>lib/memoire/<strong>export-validation</strong>.ts</p>
+<p>lib/memoire/<strong>schema-artifacts</strong>.ts</p>
+</div>
+</div>
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold text-neo-green mb-3">Pipeline V2 (5)</h4>
+<div class="space-y-1 text-xs font-mono text-dark/70">
+<p>lib/memoire-pipeline/<strong>config</strong>.ts</p>
+<p>lib/memoire-pipeline/<strong>types</strong>.ts</p>
+<p>lib/memoire-pipeline/<strong>plan</strong>.ts</p>
+<p>lib/memoire-pipeline/<strong>layout</strong>.ts</p>
+<p>lib/memoire-pipeline/<strong>review-loop</strong>.ts</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== PART 3 HEADER : IA ADMIN ===================== -->
+<section id="ia-admin" class="py-20 cross-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+<div class="reveal">
+<span class="tag tag-purple text-sm mb-4 inline-block">PARTIE 3</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">IA Admin</h2>
+<p class="text-lg text-dark/60 max-w-2xl mx-auto">Le chatbot qui interroge toutes tes donn&eacute;es en langage naturel. Agents, planning, factures, rondes &mdash; tu poses ta question, l'IA va chercher dans Supabase.</p>
+<div class="divider max-w-[200px] mt-10"></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 21 : IA ADMIN - ACCUEIL ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 31 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">L'accueil IA Admin</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Quand tu ouvres IA Admin, tu vois tes conversations pr&eacute;c&eacute;dentes &agrave; gauche, et au centre 6 <strong>actions rapides</strong> : Tableau de bord, Agents actifs, Planning du jour, Factures en retard, Op&eacute;rations ouvertes, Rondes du jour.</p>
+<img src="img/screenshots/ia-home.jpeg" alt="IA Admin accueil" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 22 : IA ADMIN - LISTING ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 32 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les sessions de conversation</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque conversation est sauvegard&eacute;e. Tu peux cr&eacute;er une nouvelle analyse, reprendre une ancienne, ou en supprimer.</p>
+<img src="img/screenshots/ia-listing.jpeg" alt="IA Admin listing" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 23 : IA ADMIN - NOUVELLE SESSION ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 33 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Nouvelle session d'analyse</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu donnes un titre (&laquo; M&eacute;moire EPFL 2025 &raquo;) et un contexte optionnel (&laquo; Client, Planning, Rondes... &raquo;). L'IA adapte ses r&eacute;ponses en fonction.</p>
+<img src="img/screenshots/ia-new-session.jpeg" alt="Nouvelle session IA" class="screenshot reveal max-w-3xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 24 : IA ADMIN - FACTURES ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 34 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Exemple : &laquo; Quelles factures sont en retard ? &raquo;</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu poses la question en fran&ccedil;ais, l'IA va chercher dans la table <code class="font-mono bg-dark/5 px-2 py-0.5 rounded text-sm">invoices</code> de Supabase, puis formate un tableau clair avec les montants, les clients, et m&ecirc;me une <strong>action recommand&eacute;e</strong>.</p>
+<img src="img/screenshots/ia-factures.jpeg" alt="IA Admin factures en retard" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 25 : IA ADMIN - ZOOM FACTURES ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 35 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le d&eacute;tail de la r&eacute;ponse</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Zoom sur la r&eacute;ponse : 6 factures en retard pour 77 280 &euro; TTC. L'IA identifie que SPL est la priorit&eacute; (facture la plus ancienne depuis le 16/02) et recommande une action de relance.</p>
+<img src="img/screenshots/ia-factures-zoom.jpeg" alt="D&eacute;tail factures" class="screenshot reveal max-w-3xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 26 : IA ADMIN - 13 OUTILS ===================== -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 36 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les 13 outils de l'IA Admin</h2>
+<p class="text-lg text-white/60 mb-8 reveal">Claude Sonnet 4 dispose de 13 &laquo; tools &raquo; pour interroger Supabase :</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 reveal">
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_agents</span><p class="text-white/50 text-xs mt-1">Agents actifs, cartes pro</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_clients</span><p class="text-white/50 text-xs mt-1">Liste des clients</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_sites</span><p class="text-white/50 text-xs mt-1">Sites et g&eacute;ofence</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_shifts</span><p class="text-white/50 text-xs mt-1">Planning du jour</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_work_orders</span><p class="text-white/50 text-xs mt-1">Bons de travail</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_rounds</span><p class="text-white/50 text-xs mt-1">Rondes et checkpoints</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_consignes</span><p class="text-white/50 text-xs mt-1">Consignes de site</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_invoices</span><p class="text-white/50 text-xs mt-1">Factures et &eacute;ch&eacute;ances</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_payroll</span><p class="text-white/50 text-xs mt-1">Pr&eacute;paies</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">get_dashboard_stats</span><p class="text-white/50 text-xs mt-1">KPIs globaux</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_documents</span><p class="text-white/50 text-xs mt-1">Documents stock&eacute;s</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">search_rag_documents</span><p class="text-white/50 text-xs mt-1">Recherche vectorielle</p></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">query_notifications</span><p class="text-white/50 text-xs mt-1">Alertes et notifs</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== PART 4 HEADER : GED ===================== -->
+<section id="ged" class="py-20 bg-sags text-white relative overflow-hidden">
+<div class="absolute inset-0 grid-bg opacity-10"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+<div class="reveal">
+<span class="tag bg-white text-sags text-sm mb-4 inline-block border-white">PARTIE 4 &mdash; LE GROS MORCEAU</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">Module GED</h2>
+<p class="text-lg text-white/80 max-w-3xl mx-auto">Gestion &Eacute;lectronique des Documents. 16 types de documents, wizard en 5 &eacute;tapes, IA Vision pour les photos, export PDF/DOCX, workflow de validation. Tout ce que Jalil a demand&eacute; dans son architecture fonctionnelle.</p>
+<div class="divider max-w-[200px] mt-10" style="background:repeating-linear-gradient(90deg,white 0,white 8px,transparent 8px,transparent 16px)"></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 27 : GED - VISION DE JALIL ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 37 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La vision de Jalil</h2>
+<p class="text-lg text-dark/60 mb-6 reveal">Dans ton document <em>&laquo; Architecture fonctionnelle du module GED &raquo;</em>, tu as d&eacute;fini 8 couches logiques. Voici comment on les a impl&eacute;ment&eacute;es :</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="neo-border bg-white p-4 neo-card reveal"><div class="w-8 h-8 bg-sags text-white rounded flex items-center justify-center text-xs font-bold mb-2">1</div><h4 class="font-bold text-sm">Noyau documentaire</h4><p class="text-xs text-dark/60 mt-1">Table <code class="font-mono">ged_documents</code> : identit&eacute;, m&eacute;tadonn&eacute;es, statut, version, confidentialit&eacute;, propri&eacute;taire, tra&ccedil;abilit&eacute;.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.1s"><div class="w-8 h-8 bg-sags text-white rounded flex items-center justify-center text-xs font-bold mb-2">2</div><h4 class="font-bold text-sm">R&eacute;f&eacute;rentiel</h4><p class="text-xs text-dark/60 mt-1">Table <code class="font-mono">ged_document_types</code> : 16 types avec sch&eacute;mas JSON, r&egrave;gles de codification, ic&ocirc;nes.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.2s"><div class="w-8 h-8 bg-sags text-white rounded flex items-center justify-center text-xs font-bold mb-2">3</div><h4 class="font-bold text-sm">Workflow</h4><p class="text-xs text-dark/60 mt-1">Tables <code class="font-mono">ged_workflow_*</code> : templates, instances, &eacute;tapes. Circuit de validation complet.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.3s"><div class="w-8 h-8 bg-sags text-white rounded flex items-center justify-center text-xs font-bold mb-2">4</div><h4 class="font-bold text-sm">Mod&egrave;les</h4><p class="text-xs text-dark/60 mt-1">Templates Zustand avec sections dynamiques par type de document. Enti&egrave;rement param&eacute;trables.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.4s"><div class="w-8 h-8 bg-neo-blue text-white rounded flex items-center justify-center text-xs font-bold mb-2">5</div><h4 class="font-bold text-sm">Recherche</h4><p class="text-xs text-dark/60 mt-1">FTS Supabase + filtres (type, statut, site, client, entit&eacute;, tag) + pagination.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.5s"><div class="w-8 h-8 bg-neo-blue text-white rounded flex items-center justify-center text-xs font-bold mb-2">6</div><h4 class="font-bold text-sm">Archivage</h4><p class="text-xs text-dark/60 mt-1">7 statuts de cycle de vie : Brouillon &rarr; En r&eacute;vision &rarr; Approuv&eacute; &rarr; Actif &rarr; Remplac&eacute; &rarr; Obsol&egrave;te &rarr; Archiv&eacute;.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.6s"><div class="w-8 h-8 bg-neo-purple text-white rounded flex items-center justify-center text-xs font-bold mb-2">7</div><h4 class="font-bold text-sm">S&eacute;curit&eacute;</h4><p class="text-xs text-dark/60 mt-1">RLS Supabase, journalisation dans <code class="font-mono">ged_audit_log</code>, preuve de diffusion, signature.</p></div>
+<div class="neo-border bg-white p-4 neo-card reveal" style="transition-delay:.7s"><div class="w-8 h-8 bg-neo-purple text-white rounded flex items-center justify-center text-xs font-bold mb-2">8</div><h4 class="font-bold text-sm">Assistance IA</h4><p class="text-xs text-dark/60 mt-1">Claude Haiku pour la vision, reformulation, classification. Int&eacute;gr&eacute; &agrave; chaque &eacute;tape du wizard.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 28 : GED - LISTING ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 38 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La page principale GED</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Un tableau avec tous les documents. Tu vois la r&eacute;f&eacute;rence (g&eacute;n&eacute;r&eacute;e automatiquement), le titre, le type, le statut, la criticit&eacute;, le site, la version, et la date de modification. Plus une barre de recherche full-text et des boutons <strong>Export CSV</strong> et <strong>+ Nouveau document</strong>.</p>
+<img src="img/screenshots/ged-listing.jpeg" alt="GED listing" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- ===================== SECTION 29 : GED - FILTRES TYPES ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 39 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Filtrer par type de document</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">16 types de documents, chacun avec son code et sa couleur :</p>
+<div class="grid lg:grid-cols-2 gap-8 items-start">
+<img src="img/screenshots/ged-types.jpeg" alt="Filtres par type" class="screenshot reveal">
+<div class="grid grid-cols-2 gap-2 reveal-right">
+<div class="p-2 bg-blue-50 border border-blue-200 rounded text-xs"><strong>NS</strong> &mdash; Note de Service</div>
+<div class="p-2 bg-sky-50 border border-sky-200 rounded text-xs"><strong>NI</strong> &mdash; Note d'Information</div>
+<div class="p-2 bg-indigo-50 border border-indigo-200 rounded text-xs"><strong>PROC</strong> &mdash; Proc&eacute;dure</div>
+<div class="p-2 bg-rose-50 border border-rose-200 rounded text-xs"><strong>IT</strong> &mdash; Instruction de Travail</div>
+<div class="p-2 bg-red-50 border border-red-200 rounded text-xs"><strong>IT_CONSIGNE</strong> &mdash; Consigne de Site</div>
+<div class="p-2 bg-amber-50 border border-amber-200 rounded text-xs"><strong>MAN</strong> &mdash; Manuel</div>
+<div class="p-2 bg-purple-50 border border-purple-200 rounded text-xs"><strong>POL</strong> &mdash; Politique</div>
+<div class="p-2 bg-emerald-50 border border-emerald-200 rounded text-xs"><strong>CH</strong> &mdash; Charte</div>
+<div class="p-2 bg-teal-50 border border-teal-200 rounded text-xs"><strong>FRM</strong> &mdash; Formulaire</div>
+<div class="p-2 bg-orange-50 border border-orange-200 rounded text-xs"><strong>MOD</strong> &mdash; Mod&egrave;le</div>
+<div class="p-2 bg-slate-50 border border-slate-200 rounded text-xs"><strong>ANN</strong> &mdash; Annexe</div>
+<div class="p-2 bg-violet-50 border border-violet-200 rounded text-xs"><strong>REG</strong> &mdash; Registre</div>
+<div class="p-2 bg-cyan-50 border border-cyan-200 rounded text-xs"><strong>CR</strong> &mdash; Compte-Rendu</div>
+<div class="p-2 bg-lime-50 border border-lime-200 rounded text-xs"><strong>PV</strong> &mdash; Proc&egrave;s-Verbal</div>
+<div class="p-2 bg-fuchsia-50 border border-fuchsia-200 rounded text-xs"><strong>RAP</strong> &mdash; Rapport</div>
+<div class="p-2 bg-pink-50 border border-pink-200 rounded text-xs"><strong>NSY / NC</strong> &mdash; Synth&egrave;se / Non-Conformit&eacute;</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 30 : GED - FILTRES STATUTS ===================== -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 40 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Filtrer par statut</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le cycle de vie complet d'un document :</p>
+<div class="grid lg:grid-cols-2 gap-8 items-center">
+<img src="img/screenshots/ged-statuses.jpeg" alt="Filtres par statut" class="screenshot reveal">
+<div class="space-y-3 reveal-right">
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-gray-400"></div><strong>Brouillon</strong> &mdash; En cours de r&eacute;daction</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-blue-500"></div><strong>En r&eacute;vision</strong> &mdash; Soumis pour validation</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-green-500"></div><strong>Approuv&eacute;</strong> &mdash; Valid&eacute; par le responsable</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-emerald-600"></div><strong>Actif</strong> &mdash; En vigueur, diffus&eacute;</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-orange-500"></div><strong>Remplac&eacute;</strong> &mdash; Nouvelle version disponible</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-red-500"></div><strong>Obsol&egrave;te</strong> &mdash; Plus valide</div>
+<div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-slate-500"></div><strong>Archiv&eacute;</strong> &mdash; Conservation longue dur&eacute;e</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 31-35 : GED WIZARD ===================== -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 41 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le Wizard : cr&eacute;er un document en 5 &eacute;tapes</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Quand tu cliques &laquo; + Nouveau document &raquo;, un assistant te guide &eacute;tape par &eacute;tape. &Agrave; droite, un <strong>aper&ccedil;u PDF en temps r&eacute;el</strong> se met &agrave; jour au fur et &agrave; mesure que tu remplis les champs.</p>
+<div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
+<div class="flex items-center gap-2"><div class="step-dot step-active">1</div><span class="text-sm font-bold">Entit&eacute;</span></div>
+<div class="text-xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-2"><div class="step-dot step-pending">2</div><span class="text-sm">Type</span></div>
+<div class="text-xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-2"><div class="step-dot step-pending">3</div><span class="text-sm">Infos</span></div>
+<div class="text-xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-2"><div class="step-dot step-pending">4</div><span class="text-sm">Contenu</span></div>
+<div class="text-xl text-dark/20">&rarr;</div>
+<div class="flex items-center gap-2"><div class="step-dot step-pending">5</div><span class="text-sm">Aper&ccedil;u</span></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 32 : WIZARD ÉTAPE 1 -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 42 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 1 : S&eacute;lectionner l'entit&eacute;</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu choisis quelle soci&eacute;t&eacute; du groupe &eacute;met le document. Chaque entit&eacute; a son logo, son SIRET, son num&eacute;ro CNAPS. Le logo appara&icirc;t automatiquement sur le PDF g&eacute;n&eacute;r&eacute;.</p>
+<img src="img/screenshots/ged-entities.jpeg" alt="S&eacute;lection entit&eacute;" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 33 : WIZARD ÉTAPE 2 -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 43 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 2 : Choisir le type de document</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Les 16 types sont class&eacute;s en deux cat&eacute;gories : <strong>Documents terrain</strong> (IT, IT_CONSIGNE) et <strong>Autres documents</strong>. Quand tu s&eacute;lectionnes un type, l'aper&ccedil;u PDF se met &agrave; jour avec le template correspondant.</p>
+<img src="img/screenshots/ged-doctype.jpeg" alt="S&eacute;lection type document" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 34 : WIZARD ÉTAPE 3 -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 44 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 3 : Informations du document</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu renseignes le <strong>titre</strong>, le <strong>site concern&eacute;</strong> (s&eacute;lecteur li&eacute; &agrave; la table Sites de Supabase), le <strong>validateur</strong>, la <strong>criticit&eacute;</strong> (Faible / Moyen / &Eacute;lev&eacute;) et la <strong>classification</strong> (Interne / Restreint / Confidentiel). L'auteur est d&eacute;tect&eacute; automatiquement.</p>
+<img src="img/screenshots/ged-header.jpeg" alt="Informations document" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 35 : WIZARD ÉTAPE 4 - CONTENU -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 45 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 4 : Le contenu du document</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">C'est ici que &ccedil;a devient int&eacute;ressant. Les sections s'adaptent au type de document choisi. Pour une <strong>Consigne de Site (IT_CONSIGNE)</strong>, tu as : Adresse du site, Photos, Moyen d'acc&egrave;s, Acc&egrave;s au site, Horaires, Gestion du site, Consignes de ronde, Proc&eacute;dures d'urgence, Matrice d'intervention, Contacts d'urgence.</p>
+<img src="img/screenshots/ged-content-empty.jpeg" alt="Contenu document" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 36 : UPLOAD IMAGES + VISION IA -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 46 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Upload d'images + analyse IA Vision</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu glisses tes photos dans la zone de drop (JPEG, PNG, WebP &mdash; max 25 Mo). L'image est compress&eacute;e &agrave; 1568px c&ocirc;t&eacute; client, puis envoy&eacute;e &agrave; <strong>Claude Haiku</strong> en mode vision multimodale. L'IA g&eacute;n&egrave;re automatiquement une <strong>caption professionnelle</strong> et un <strong>texte alt</strong>.</p>
+<img src="img/screenshots/ged-content-1img.jpeg" alt="1 image analys&eacute;e par IA" class="screenshot reveal max-w-5xl mx-auto">
+<div class="mt-8 highlight-box py-4 reveal">
+<p class="text-sm text-dark/70"><strong>Exemple :</strong> L'IA analyse une photo d'un clavier &agrave; code et g&eacute;n&egrave;re : <em>&laquo; Clavier &agrave; code d'acc&egrave;s mural fix&eacute; sur la fa&ccedil;ade. Syst&egrave;me de contr&ocirc;le d'acc&egrave;s par saisie num&eacute;rique permettant l'entr&eacute;e aux zones s&eacute;curis&eacute;es du terminal. &raquo;</em></p>
+</div>
+</div>
+</section>
+
+<!-- SECTION 37 : PLUSIEURS IMAGES -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 47 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Plusieurs images, PDF mis &agrave; jour en temps r&eacute;el</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Tu peux ajouter jusqu'&agrave; 10 images par section. Chaque nouvelle image est analys&eacute;e par l'IA, et le PDF &agrave; droite se met &agrave; jour <strong>en temps r&eacute;el</strong> avec les photos et leurs captions.</p>
+<img src="img/screenshots/ged-content-2imgs.jpeg" alt="2 images avec aper&ccedil;u PDF" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 38 : ACCÈS ET HORAIRES -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 48 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Acc&egrave;s, horaires et gestion du site</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Pour les consignes de site, tu renseignes les moyens d'acc&egrave;s (badge principal, badge secondaire, description d&eacute;taill&eacute;e), les &eacute;tapes d'acc&egrave;s, les horaires d'ouverture (semaine et week-end), et les notes horaires sp&eacute;cifiques.</p>
+<img src="img/screenshots/ged-access.jpeg" alt="Acc&egrave;s et horaires" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 39 : APERÇU FINAL -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 49 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">&Eacute;tape 5 : Aper&ccedil;u et cr&eacute;ation</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Avant de cr&eacute;er le document, tu as un r&eacute;capitulatif complet : titre, entit&eacute;, type, criticit&eacute;, classification, site, validateur, adresse, photos, acc&egrave;s, horaires. Le PDF final est visible &agrave; droite. Tu peux cliquer <strong>&laquo; R&eacute;viser avec l'IA &raquo;</strong> pour que Claude v&eacute;rifie et am&eacute;liore le contenu.</p>
+<img src="img/screenshots/ged-preview.jpeg" alt="Aper&ccedil;u final" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 40 : SUGGESTION IA -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 50 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La suggestion IA</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Quand tu cliques &laquo; R&eacute;viser avec l'IA &raquo;, Claude analyse tout le contenu du document et propose une <strong>version am&eacute;lior&eacute;e</strong>. Tu vois la suggestion en markdown, avec deux boutons : <strong>Rejeter</strong> ou <strong>Appliquer</strong>. L'IA ne d&eacute;cide jamais seule &mdash; comme Jalil l'a demand&eacute;.</p>
+<img src="img/screenshots/ged-ia-suggest.jpeg" alt="Suggestion IA" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 41 : ENTITY + PREVIEW SIDE BY SIDE -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 51 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le split-view : formulaire + PDF</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Pendant tout le wizard, l'&eacute;cran est divis&eacute; en deux : le formulaire &agrave; gauche, le <strong>PDF live</strong> &agrave; droite. Chaque modification se refl&egrave;te instantan&eacute;ment dans le PDF. C'est g&eacute;n&eacute;r&eacute; c&ocirc;t&eacute; serveur avec <code class="font-mono bg-dark/5 px-1 rounded text-sm">@react-pdf/renderer</code>.</p>
+<img src="img/screenshots/ged-entity-preview.jpeg" alt="Split view entit&eacute; + PDF" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 42 : DOCUMENT DETAIL -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 52 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La page d&eacute;tail d'un document</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Une fois cr&eacute;&eacute;, chaque document a sa page d&eacute;di&eacute;e. Tu y trouves : les informations (type, criticit&eacute;, site, date), les tags, l'aper&ccedil;u PDF, les boutons d'export (PDF / DOCX), le changement de statut, les versions, et l'historique d'audit.</p>
+<img src="img/screenshots/ged-detail.jpeg" alt="D&eacute;tail document GED" class="screenshot reveal max-w-5xl mx-auto">
+</div>
+</section>
+
+<!-- SECTION 43 : RÉFÉRENCE AUTO -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 53 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">R&eacute;f&eacute;rencement automatique</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque document re&ccedil;oit une r&eacute;f&eacute;rence unique automatique au format :</p>
+<div class="neo-border bg-white p-6 max-w-xl mx-auto text-center reveal">
+<p class="font-mono text-xl font-bold text-sags">IT_CONSIGNE-MC_SECU-20260320-001</p>
+<div class="flex justify-center gap-2 mt-4 text-xs">
+<span class="tag">Type</span>
+<span class="tag">Entit&eacute;</span>
+<span class="tag">Date</span>
+<span class="tag">Compteur</span>
+</div>
+</div>
+<p class="text-sm text-dark/40 text-center mt-4 reveal">Le compteur s'incr&eacute;mente par jour, par type et par entit&eacute;. Pas de doublon possible.</p>
+</div>
+</section>
+
+<!-- SECTION 44-47 : SUPABASE GED -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 54 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le sch&eacute;ma Supabase de la GED</h2>
+<p class="text-lg text-white/60 mb-8 reveal">Voici les tables qui font tourner le module GED :</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_documents</h4><p class="text-white/50 text-xs mt-2">Table centrale. Titre, type, statut, version, r&eacute;f&eacute;rence, criticit&eacute;, classification, entity_code, sections_json (JSONB), description, file_path, hash SHA-256.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_document_types</h4><p class="text-white/50 text-xs mt-2">16 types avec leurs sch&eacute;mas JSON complets (sections, champs, options). Ic&ocirc;nes, couleurs, criticit&eacute; par d&eacute;faut.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_entities</h4><p class="text-white/50 text-xs mt-2">5 entit&eacute;s avec logo, adresse, SIRET, CNAPS, couleur primaire.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_document_versions</h4><p class="text-white/50 text-xs mt-2">Historique des versions : V0, V1, V2... Snapshot complet du document &agrave; chaque &eacute;volution.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_document_images</h4><p class="text-white/50 text-xs mt-2">Images attach&eacute;es : storage_path, thumbnails, caption IA, alt text, analyse JSONB.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_audit_log</h4><p class="text-white/50 text-xs mt-2">Journalisation compl&egrave;te : qui a fait quoi, quand, sur quel document.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_tags / ged_document_tags</h4><p class="text-white/50 text-xs mt-2">Syst&egrave;me de tags libre. Relation N:N entre documents et tags.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_workflow_templates</h4><p class="text-white/50 text-xs mt-2">Templates de circuit de validation avec &eacute;tapes, r&ocirc;les, d&eacute;lais.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded"><h4 class="text-sags font-mono font-bold text-sm">ged_ai_logs</h4><p class="text-white/50 text-xs mt-2">Tra&ccedil;abilit&eacute; IA : texte original, texte modifi&eacute;, action, mod&egrave;le utilis&eacute;.</p></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 45 : ZUSTAND STORE -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 55 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">State management : Zustand Store</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le wizard GED utilise <strong>Zustand</strong> (~1 Ko) pour g&eacute;rer l'&eacute;tat du formulaire. C'est un store global qui persiste entre les &eacute;tapes et g&egrave;re la validation, l'auto-save (debounce 2s), et la r&eacute;cup&eacute;ration de crash via localStorage (24h d'expiration).</p>
+<div class="neo-border bg-dark p-6 rounded-lg reveal max-w-3xl mx-auto">
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="cm">// &Eacute;tat du formulaire GED</span><br>
+<span class="kw">interface</span> <span class="tp">GedDocumentFormState</span> {<br>
+&nbsp;&nbsp;<span class="fn">step</span>: <span class="num">0</span> | <span class="num">1</span> | <span class="num">2</span> | <span class="num">3</span> | <span class="num">4</span><br>
+&nbsp;&nbsp;<span class="fn">entity_code</span>: <span class="tp">string</span> | <span class="kw">null</span><br>
+&nbsp;&nbsp;<span class="fn">type_code</span>: <span class="tp">string</span> | <span class="kw">null</span><br>
+&nbsp;&nbsp;<span class="fn">header</span>: { <span class="fn">title</span>, <span class="fn">site_id</span>, <span class="fn">validator_id</span>, <span class="fn">criticality</span>, <span class="fn">classification</span> }<br>
+&nbsp;&nbsp;<span class="fn">sections_data</span>: <span class="tp">Record</span>&lt;<span class="tp">string</span>, <span class="tp">GedSectionData</span>&gt;<br>
+&nbsp;&nbsp;<span class="fn">isDirty</span>: <span class="tp">boolean</span><br>
+&nbsp;&nbsp;<span class="fn">isSaving</span>: <span class="tp">boolean</span><br>
+}
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 46-50 : GED TECHNIQUE -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 56 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les 9 types de sections</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque type de document a ses sections pr&eacute;d&eacute;finies. Voici les renderers :</p>
+<div class="grid sm:grid-cols-3 gap-4 reveal">
+<div class="neo-border bg-white p-4"><span class="tag tag-blue text-xs mb-2 inline-block">TEXT</span><p class="text-sm">Texte libre avec assistance IA (reformulation, structure)</p></div>
+<div class="neo-border bg-white p-4"><span class="tag tag-green text-xs mb-2 inline-block">GROUP</span><p class="text-sm">Champs group&eacute;s (adresse compl&egrave;te, code postal, ville)</p></div>
+<div class="neo-border bg-white p-4"><span class="tag tag-purple text-xs mb-2 inline-block">CHECKLIST</span><p class="text-sm">Cases &agrave; cocher + option libre</p></div>
+<div class="neo-border bg-white p-4"><span class="tag tag-red text-xs mb-2 inline-block">STEPS</span><p class="text-sm">Proc&eacute;dure &eacute;tape par &eacute;tape avec images</p></div>
+<div class="neo-border bg-white p-4"><span class="tag text-xs mb-2 inline-block bg-neo-orange text-white border-neo-orange">LIST</span><p class="text-sm">Liste de points ordonn&eacute;s</p></div>
+<div class="neo-border bg-white p-4"><span class="tag text-xs mb-2 inline-block bg-neo-cyan text-white border-neo-cyan">REFERENCES</span><p class="text-sm">Liens vers d'autres documents</p></div>
+<div class="neo-border bg-white p-4"><span class="tag text-xs mb-2 inline-block bg-neo-pink text-white border-neo-pink">TABLE</span><p class="text-sm">Tableau dynamique (participants, contacts...)</p></div>
+<div class="neo-border bg-white p-4"><span class="tag text-xs mb-2 inline-block bg-neo-yellow text-dark border-neo-yellow">IMAGE</span><p class="text-sm">Upload images + analyse IA Vision</p></div>
+<div class="neo-border bg-white p-4"><span class="tag text-xs mb-2 inline-block bg-sags text-white border-sags">MATRIX</span><p class="text-sm">Matrice d'intervention (4 cellules : jour/nuit &times; PC/rondier)</p></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 47 : VALIDATION ZOD -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 57 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Validation dynamique avec Zod</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque &eacute;tape du wizard est valid&eacute;e avec <strong>Zod</strong> (sch&eacute;ma TypeScript). Le sch&eacute;ma est construit dynamiquement en fonction du type de document choisi. L'utilisateur ne peut pas passer &agrave; l'&eacute;tape suivante si les champs obligatoires ne sont pas remplis.</p>
+<div class="max-w-2xl mx-auto space-y-3 reveal">
+<div class="neo-border bg-white p-4 flex items-center gap-4"><span class="font-mono text-sags font-bold w-24 shrink-0">Step 0</span><span class="text-sm">entity_code requis</span></div>
+<div class="neo-border bg-white p-4 flex items-center gap-4"><span class="font-mono text-sags font-bold w-24 shrink-0">Step 1</span><span class="text-sm">type_code requis</span></div>
+<div class="neo-border bg-white p-4 flex items-center gap-4"><span class="font-mono text-sags font-bold w-24 shrink-0">Step 2</span><span class="text-sm">titre (min 2 caract&egrave;res, max 300)</span></div>
+<div class="neo-border bg-white p-4 flex items-center gap-4"><span class="font-mono text-sags font-bold w-24 shrink-0">Step 3</span><span class="text-sm">Sections texte requises valides</span></div>
+<div class="neo-border bg-white p-4 flex items-center gap-4"><span class="font-mono text-sags font-bold w-24 shrink-0">Step 4</span><span class="text-sm">Toujours passable (aper&ccedil;u)</span></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 48 : EXPORT PDF GED -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 58 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Export PDF &amp; DOCX</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Depuis la page d&eacute;tail, tu peux exporter en un clic. Le PDF est g&eacute;n&eacute;r&eacute; c&ocirc;t&eacute; serveur avec <strong>@react-pdf/renderer</strong> (composant React &rarr; PDF). Le DOCX est g&eacute;n&eacute;r&eacute; avec la lib <strong>docx</strong> v9.6 (tables, images embed, branding SAGS). Les deux formats incluent le logo de l'entit&eacute;, le cartouche d'en-t&ecirc;te, les images avec captions, et les sections automatiques (preuve de diffusion, tra&ccedil;abilit&eacute; IA, historique des versions).</p>
+</div>
+</section>
+
+<!-- SECTION 49 : WORKFLOW VALIDATION -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 59 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Circuit de validation</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le workflow de validation suit un circuit pr&eacute;d&eacute;fini. Chaque &eacute;tape peut &ecirc;tre approuv&eacute;e ou refus&eacute;e avec commentaire. Si un &eacute;tape est refus&eacute;e, le document revient au statut &laquo; refus&eacute; &raquo;.</p>
+<div class="flex flex-wrap justify-center gap-2 reveal">
+<div class="neo-border bg-gray-100 px-4 py-2 text-sm font-bold">R&eacute;daction</div>
+<span class="text-xl">&rarr;</span>
+<div class="neo-border bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700">Soumission</div>
+<span class="text-xl">&rarr;</span>
+<div class="neo-border bg-yellow-50 px-4 py-2 text-sm font-bold text-yellow-700">R&eacute;f&eacute;rent m&eacute;tier</div>
+<span class="text-xl">&rarr;</span>
+<div class="neo-border bg-orange-50 px-4 py-2 text-sm font-bold text-orange-700">Validation direction</div>
+<span class="text-xl">&rarr;</span>
+<div class="neo-border bg-green-50 px-4 py-2 text-sm font-bold text-green-700">Publication</div>
+<span class="text-xl">&rarr;</span>
+<div class="neo-border bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700">Diffusion agents</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 50 : RAG INTEGRATION -->
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 60 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Int&eacute;gration RAG</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque document GED est automatiquement <strong>index&eacute; dans pgvector</strong> pour la recherche s&eacute;mantique. Le contenu est d&eacute;coup&eacute; en chunks de 3200 caract&egrave;res avec un overlap de 400, embed en vecteurs 1536 dimensions, et stock&eacute; avec un index HNSW. Cela permet &agrave; l'IA Admin et au g&eacute;n&eacute;rateur de m&eacute;moires de retrouver les documents pertinents.</p>
+</div>
+</section>
+
+<!-- ===================== PART 5 HEADER : ARCHITECTURE ===================== -->
+<section id="archi" class="py-20 cross-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+<div class="reveal">
+<span class="tag tag-blue text-sm mb-4 inline-block">PARTIE 5</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">Architecture Technique</h2>
+<p class="text-lg text-dark/60 max-w-2xl mx-auto">Supabase, pgvector, API routes, s&eacute;curit&eacute;, d&eacute;ploiement. Le dessous des cartes.</p>
+<div class="divider max-w-[200px] mt-10"></div>
+</div>
+</div>
+</section>
+
+<!-- SECTIONS 51-60 : ARCHITECTURE TECHNIQUE -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 61 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les 3 clients Supabase</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">L'app utilise 3 instances diff&eacute;rentes de Supabase selon le contexte :</p>
+<div class="grid md:grid-cols-3 gap-6 reveal">
+<div class="neo-border bg-white p-5"><h4 class="font-bold mb-2 text-neo-blue">Client (Browser)</h4><p class="text-sm text-dark/60">Pour les requ&ecirc;tes c&ocirc;t&eacute; navigateur. Utilise la cl&eacute; anon. Cookies g&eacute;r&eacute;s automatiquement par <code class="font-mono text-xs">@supabase/ssr</code>.</p></div>
+<div class="neo-border bg-white p-5"><h4 class="font-bold mb-2 text-neo-green">Server (SSR)</h4><p class="text-sm text-dark/60">Pour les Server Components et Server Actions. Cookie middleware avec try-catch pour la compatibilit&eacute; read-only.</p></div>
+<div class="neo-border bg-white p-5"><h4 class="font-bold mb-2 text-sags">Admin (Service Role)</h4><p class="text-sm text-dark/60">Pour les op&eacute;rations sensibles : bypass RLS, gestion des utilisateurs, RAG ingestion. Stateless, pas de session.</p></div>
+</div>
+</div>
+</section>
+
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 62 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Le middleware d'authentification</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Chaque requ&ecirc;te passe par un middleware qui v&eacute;rifie la session et redirige selon le r&ocirc;le. Un agent terrain ne peut pas acc&eacute;der au dashboard, et un admin ne peut pas acc&eacute;der au portail agent.</p>
+</div>
+</section>
+
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 63 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">pgvector : la recherche s&eacute;mantique</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le RAG (Retrieval-Augmented Generation) fonctionne avec pgvector, une extension PostgreSQL pour les vecteurs. Chaque document est d&eacute;coup&eacute; en morceaux, transform&eacute; en vecteur 1536 dimensions, et index&eacute; avec HNSW (m=16, ef=64). La recherche utilise la distance cosinus avec un seuil de 0.7 et un boost de 1.2x pour les documents r&eacute;cents.</p>
+</div>
+</section>
+
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 64 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Chunking : comment on d&eacute;coupe les textes</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Strat&eacute;gie de chunking en 3 niveaux : d'abord par headers markdown (##), puis par paragraphes, puis par phrases. Taille cible : 3200 caract&egrave;res (~800 tokens) avec 400 caract&egrave;res d'overlap entre les chunks pour garder le contexte.</p>
+</div>
+</section>
+
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 65 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Les mod&egrave;les IA utilis&eacute;s</h2>
+<div class="grid md:grid-cols-2 gap-6 reveal">
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold mb-3 text-sags">Claude (Anthropic)</h4>
+<ul class="space-y-2 text-sm">
+<li><strong>Sonnet 4.6</strong> &mdash; Chat admin (13 tools), g&eacute;n&eacute;ration m&eacute;moires, parsing templates CCTP. Le plus puissant.</li>
+<li><strong>Sonnet 4</strong> &mdash; Chat admin/agent, g&eacute;n&eacute;ration GED depuis images. Rapide et pr&eacute;cis.</li>
+<li><strong>Haiku 4.5</strong> &mdash; Vision images, reformulation texte, classification documents. Rapide et pas cher (~0.80$/M tokens).</li>
+</ul>
+</div>
+<div class="neo-border bg-white p-5">
+<h4 class="font-bold mb-3 text-neo-green">GPT-4o (OpenAI)</h4>
+<ul class="space-y-2 text-sm">
+<li><strong>Relecture m&eacute;moires</strong> &mdash; Joue le r&ocirc;le d'un jury expert de march&eacute;s publics. Note chaque section /100.</li>
+<li><strong>Temp&eacute;rature 0.2</strong> &mdash; D&eacute;terministe pour des scores reproductibles.</li>
+<li><strong>Max 2000 tokens</strong> &mdash; Review synth&eacute;tique et actionnable.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTION 66 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">S&eacute;curit&eacute; de l'API</h2>
+<p class="text-lg text-white/60 mb-8 reveal">Toutes les routes <code class="font-mono bg-white/10 px-1 rounded">/api/*</code> ont des headers de s&eacute;curit&eacute; configur&eacute;s dans <code class="font-mono bg-white/10 px-1 rounded">next.config.ts</code> :</p>
+<div class="grid sm:grid-cols-2 gap-3 reveal max-w-3xl mx-auto">
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">X-Frame-Options</span><span class="text-white/50 text-xs ml-2">DENY</span></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">X-Content-Type-Options</span><span class="text-white/50 text-xs ml-2">nosniff</span></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">X-XSS-Protection</span><span class="text-white/50 text-xs ml-2">1; mode=block</span></div>
+<div class="bg-white/5 border border-white/10 p-3 rounded"><span class="text-sags font-mono text-xs">Referrer-Policy</span><span class="text-white/50 text-xs ml-2">strict-origin</span></div>
+</div>
+</div>
+</section>
+
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 67 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Stockage Supabase Storage</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Les fichiers sont stock&eacute;s dans 4 buckets Supabase Storage :</p>
+<div class="grid sm:grid-cols-2 gap-4 reveal">
+<div class="neo-border bg-white p-4"><h4 class="font-bold font-mono text-sm text-sags">ged-images</h4><p class="text-xs text-dark/60 mt-1">Priv&eacute;, 25 Mo max, images uniquement. Thumbnails 150px + 300px g&eacute;n&eacute;r&eacute;s automatiquement.</p></div>
+<div class="neo-border bg-white p-4"><h4 class="font-bold font-mono text-sm text-sags">ged-documents</h4><p class="text-xs text-dark/60 mt-1">Documents GED (upload fichier), 100 Mo max. Hash SHA-256 pour d&eacute;duplication.</p></div>
+<div class="neo-border bg-white p-4"><h4 class="font-bold font-mono text-sm text-sags">documents</h4><p class="text-xs text-dark/60 mt-1">CCTP et templates pour les m&eacute;moires techniques.</p></div>
+<div class="neo-border bg-white p-4"><h4 class="font-bold font-mono text-sm text-sags">consigne-photos</h4><p class="text-xs text-dark/60 mt-1">Photos des consignes de site.</p></div>
+</div>
+</div>
+</section>
+
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 68 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">D&eacute;ploiement Vercel</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">L'application est d&eacute;ploy&eacute;e sur <strong>Vercel</strong>, r&eacute;gion <strong>CDG1 (Paris)</strong> pour la latence minimale. Le build utilise Turbopack. Les libs serveur (react-pdf, jspdf, docx, mammoth, unpdf) sont d&eacute;clar&eacute;es dans <code class="font-mono bg-dark/5 px-1 rounded text-sm">serverExternalPackages</code> pour &eacute;viter le bundling c&ocirc;t&eacute; client.</p>
+</div>
+</section>
+
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 69 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Server Actions : le pattern</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Les 22 fichiers de server actions suivent tous le m&ecirc;me pattern :</p>
+<div class="neo-border bg-dark p-6 rounded-lg reveal max-w-3xl mx-auto">
+<div class="code-block text-xs" style="border:none;padding:0">
+<span class="str">"use server"</span><br><br>
+<span class="num">1.</span> <span class="cm">Auth check</span> &rarr; supabase.auth.getUser()<br>
+<span class="num">2.</span> <span class="cm">Zod validation</span> &rarr; schema.safeParse(data)<br>
+<span class="num">3.</span> <span class="cm">Supabase query</span> &rarr; createClient() ou createAdminClient()<br>
+<span class="num">4.</span> <span class="cm">Error return</span> &rarr; {error: "message"} ou {success: true}<br>
+<span class="num">5.</span> <span class="cm">Revalidation</span> &rarr; revalidatePath("/dashboard/xxx")<br>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 70 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Notifications temps r&eacute;el</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Les notifications utilisent <strong>Supabase Realtime</strong>. Quand une notification est ins&eacute;r&eacute;e dans la table, le hook <code class="font-mono bg-dark/5 px-1 rounded text-sm">useNotifications</code> met &agrave; jour le compteur de la cloche en temps r&eacute;el via WebSocket. Pas de polling, pas de refresh.</p>
+</div>
+</section>
+
+<!-- ===================== PART 6 : RÉCAP & SUITE ===================== -->
+<section id="suite" class="py-20 bg-sags text-white relative overflow-hidden">
+<div class="absolute inset-0 dot-bg opacity-10"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+<div class="reveal">
+<span class="tag bg-white text-sags text-sm mb-4 inline-block border-white">PARTIE 6</span>
+<h2 class="text-4xl sm:text-6xl font-bold mt-4 mb-4">Et ensuite ?</h2>
+<p class="text-lg text-white/80 max-w-2xl mx-auto">Ce qui est fait, ce qui reste, et la roadmap.</p>
+<div class="divider max-w-[200px] mt-10" style="background:repeating-linear-gradient(90deg,white 0,white 8px,transparent 8px,transparent 16px)"></div>
+</div>
+</div>
+</section>
+
+<!-- SECTIONS 61-70 -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 71 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-10 reveal">Ce qui est livr&eacute;</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="neo-border bg-neo-green/5 p-5 reveal"><h4 class="font-bold text-neo-green mb-2">Module 1 : Architecture &amp; Web App</h4><p class="text-sm text-dark/60">Dashboard, auth, 7 r&ocirc;les, sidebar, header, mobile nav, design system premium, notifications temps r&eacute;el.</p><span class="tag tag-green text-xs mt-3 inline-block">DEPLOY&Eacute;</span></div>
+<div class="neo-border bg-neo-green/5 p-5 reveal" style="transition-delay:.1s"><h4 class="font-bold text-neo-green mb-2">Module 2 : IA M&eacute;moires + Admin Chat</h4><p class="text-sm text-dark/60">G&eacute;n&eacute;ration m&eacute;moires techniques (Claude Sonnet), relecture GPT-4o, score qualit&eacute;, export PDF/DOCX. Chat admin RAG avec 13 tools Supabase.</p><span class="tag tag-green text-xs mt-3 inline-block">DEPLOY&Eacute;</span></div>
+<div class="neo-border bg-neo-green/5 p-5 reveal" style="transition-delay:.2s"><h4 class="font-bold text-neo-green mb-2">Module 4 : GED</h4><p class="text-sm text-dark/60">16 types de documents, wizard 5 &eacute;tapes, IA Vision, workflow validation, export PDF/DOCX, int&eacute;gration RAG, audit log complet.</p><span class="tag tag-green text-xs mt-3 inline-block">DEPLOY&Eacute;</span></div>
+<div class="neo-border bg-neo-yellow/10 p-5 reveal" style="transition-delay:.3s"><h4 class="font-bold text-neo-orange mb-2">Module 3 : Kizeo + Consignes + Planning</h4><p class="text-sm text-dark/60">Extraction auto Kizeo, consignes Telegram, planning/op&eacute;rations/rondes.</p><span class="tag text-xs mt-3 inline-block bg-neo-yellow text-dark border-neo-yellow">PLANIFI&Eacute;</span></div>
+</div>
+</div>
+</section>
+
+<section class="py-20 stripe-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 72 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">La GED par rapport au document de Jalil</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Le document &laquo; Architecture fonctionnelle du module GED &raquo; de Jalil d&eacute;finit 8 couches. Voici le mapping :</p>
+<div class="max-w-3xl mx-auto space-y-3 reveal">
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 1 : Noyau documentaire</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 2 : R&eacute;f&eacute;rentiel documentaire</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 3 : Moteur de workflow</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 4 : Gestion des mod&egrave;les</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 5 : Recherche et consultation</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 6 : Archivage et cycle de vie</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 7 : S&eacute;curit&eacute; et journalisation</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+<div class="neo-border bg-white p-4 flex justify-between items-center"><span class="font-bold text-sm">Couche 8 : Assistance IA</span><span class="tag tag-green text-xs">IMPL&Eacute;MENT&Eacute;</span></div>
+</div>
+</div>
+</section>
+
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal">SECTION 73 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-4 reveal">Principes respect&eacute;s</h2>
+<p class="text-lg text-dark/60 mb-8 reveal">Jalil a d&eacute;fini 8 principes directeurs. Tous sont respect&eacute;s :</p>
+<div class="grid sm:grid-cols-2 gap-4 reveal">
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">Le document est un objet gouvern&eacute;</strong><p class="text-xs text-dark/60 mt-1">Pas un simple fichier. Identit&eacute;, cycle de vie, m&eacute;tadonn&eacute;es, droits.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">Moteur param&eacute;trable</strong><p class="text-xs text-dark/60 mt-1">Workflows, statuts, types, templates &mdash; tout configurable.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">Module modulaire</strong><p class="text-xs text-dark/60 mt-1">Fonctionne seul ou connect&eacute; au reste de SAGS OS.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">Multi-entit&eacute;s</strong><p class="text-xs text-dark/60 mt-1">5 soci&eacute;t&eacute;s g&eacute;r&eacute;es, chacune avec son logo et sa codification.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">S&eacute;curit&eacute; proportionn&eacute;e</strong><p class="text-xs text-dark/60 mt-1">RLS Supabase + audit log sans complexifier l'UX.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">Tra&ccedil;abilit&eacute; native</strong><p class="text-xs text-dark/60 mt-1">Chaque action laisse une trace dans ged_audit_log.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">UX simple</strong><p class="text-xs text-dark/60 mt-1">Wizard guid&eacute;, aper&ccedil;u PDF temps r&eacute;el, auto-save.</p></div></div>
+<div class="flex items-start gap-3 p-4 bg-neo-green/5 rounded"><span class="text-neo-green text-xl">&#10003;</span><div><strong class="text-sm">IA assiste sans remplacer</strong><p class="text-xs text-dark/60 mt-1">Propose, ne d&eacute;cide pas. Boutons Rejeter/Appliquer.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 64-85 : RÉCAP RAPIDE -->
+<section class="py-20 bg-dark text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<p class="section-num mb-2 reveal text-sags">SECTIONS 75-95 / 95</p>
+<h2 class="text-3xl sm:text-4xl font-bold mb-8 reveal">R&eacute;cap technique complet</h2>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S64. Tailwind v4</h4><p class="text-white/50 text-xs">CSS vars wrapp&eacute;s dans hsl(). Import @tailwindcss/postcss. Theme inline.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S65. shadcn/ui</h4><p class="text-white/50 text-xs">25 composants Radix UI : Button, Dialog, Select, Tabs, Sidebar, Command, etc.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S66. Framer Motion</h4><p class="text-white/50 text-xs">4 presets : fadeInUp, staggerContainer, scaleIn, slideInRight. Easing custom.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S67. FullCalendar</h4><p class="text-white/50 text-xs">Daygrid, timegrid, list. CSS custom : today #FEF2F2, now-indicator SAGS red.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S68. Leaflet Maps</h4><p class="text-white/50 text-xs">Carte interactive pour les sites. G&eacute;ofence avec rayon configurable.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S69. Recharts</h4><p class="text-white/50 text-xs">Graphiques 30 jours sur le dashboard. 5 couleurs SAGS red palette.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S70. AI SDK v6</h4><p class="text-white/50 text-xs">useChat, DefaultChatTransport, sendMessage({text}), status streaming/ready.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S71. Zod v4</h4><p class="text-white/50 text-xs">12 sch&eacute;mas de validation : agents, clients, consignes, GED, invoices, etc.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S72. Zustand v5</h4><p class="text-white/50 text-xs">Store GED avec subscribe() pour auto-save. Dirty tracking + crash recovery.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S73. Sonner</h4><p class="text-white/50 text-xs">Toasts bottom-right, light theme, 1px border, custom shadow. Notifications UI.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S74. React-PDF</h4><p class="text-white/50 text-xs">G&eacute;n&eacute;ration PDF server-side. Cover, TOC, blockquotes, presenceAhead 40.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S75. docx v9.6</h4><p class="text-white/50 text-xs">Export Word avec tables, images, bold/italic inline, header/footer.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S76. mammoth</h4><p class="text-white/50 text-xs">Conversion DOCX &rarr; HTML pour extraction de texte c&ocirc;t&eacute; serveur.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S77. unpdf</h4><p class="text-white/50 text-xs">Parsing PDF pour extraction texte. Utilis&eacute; dans l'upload CCTP.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S78. Phosphor Icons</h4><p class="text-white/50 text-xs">Ic&ocirc;nes primary (duotone/fill). Lucide pour shadcn uniquement.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S79. date-fns v4</h4><p class="text-white/50 text-xs">Formatage dates, calculs horaires, dur&eacute;es pour planning/paie.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S80. react-dropzone</h4><p class="text-white/50 text-xs">Drag & drop fichiers pour GED images, CCTP upload, documents.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S81. react-markdown</h4><p class="text-white/50 text-xs">Rendu markdown dans le chat IA et les previews GED.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S82. highlight.js</h4><p class="text-white/50 text-xs">Coloration syntaxique dans les blocs de code du chat.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S83. TypeScript strict</h4><p class="text-white/50 text-xs">40+ interfaces, union types, path alias @/*, strict mode.</p></div>
+<div class="bg-white/5 border border-white/10 p-4 rounded reveal"><h4 class="text-sags font-bold text-sm mb-2">S84. ESLint Next.js</h4><p class="text-white/50 text-xs">eslint-config-next pour les bonnes pratiques React 19.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 85 : FIN ===================== -->
+<section class="py-32 mesh-bg relative overflow-hidden">
+<div class="absolute top-20 right-20 w-64 h-64 bg-sags/5 rounded-full blur-3xl animate-float"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+<div class="reveal">
+<p class="section-num mb-4">SECTION 74 / 95</p>
+<h2 class="text-4xl sm:text-6xl font-bold mb-6">C'est tout pour aujourd'hui</h2>
+<p class="text-xl text-dark/60 max-w-2xl mx-auto mb-8 leading-relaxed">Jalil, Andrei &mdash; vous avez maintenant la vision compl&egrave;te de SAGS OS. Le front-end, l'IA, la GED, l'architecture technique. Tout est en production sur <strong>visionia-france.com</strong>.</p>
+<p class="text-lg text-dark/40 mb-12">Des questions ? On en discute.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<div class="neo-border bg-sags text-white px-8 py-4 font-bold text-lg animate-pulse-red flex items-center gap-3"><img src="img/logo-sags.jpg" alt="SAGS" class="w-10 h-10 rounded object-cover">ExplorIA &times; SAGS &mdash; Mars 2026</div>
+</div>
+<p class="text-dark/30 text-sm mt-12 font-mono">Fait avec Next.js 16, Supabase, Claude Sonnet, GPT-4o, et beaucoup de caf&eacute;.</p>
+<p class="text-dark/20 text-xs mt-2">&mdash; Baptiste</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-dark text-white py-8 border-t-4 border-sags">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-3">
+<img src="img/logo-sags.jpg" alt="SAGS" class="w-8 h-8 rounded object-cover">
+<span class="font-bold">ExplorIA <span class="text-sags">&times;</span> SAGS</span>
+<span class="text-white/40 text-xs font-mono">v1.0 &mdash; Mars 2026</span>
+</div>
+<p class="text-white/40 text-sm">Pr&eacute;sentation priv&eacute;e &mdash; <strong>ExplorIA</strong> &times; <strong>Groupe SAGS</strong></p>
+</div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{const e=document.documentElement,t=e.scrollTop,s=e.scrollHeight-e.clientHeight;document.getElementById('progressBar').style.width=((t/s)*100)+'%'});
+
+// Reveal on scroll
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>observer.observe(el));
+
+// Section counter
+let sectionCount=0;
+const sections=document.querySelectorAll('.section-num');
+const counterEl=document.getElementById('sectionCounter');
+const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const num=e.target.textContent.match(/\d+/);if(num)counterEl.textContent=num[0]+'/95'}})},{threshold:.5});
+sections.forEach(el=>counterObserver.observe(el));
+
+// Logo spin easter egg
+let spins=0;
+document.getElementById('logoSpin').addEventListener('click',function(){spins++;this.style.transform='rotate('+(spins*360)+'deg)';this.style.transition='transform .6s cubic-bezier(.4,0,.2,1)';if(spins%5===0){document.body.style.filter='hue-rotate(180deg)';setTimeout(()=>{document.body.style.filter=''},1000)}});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+// Keyboard navigation
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){window.scrollBy({top:window.innerHeight*.8,behavior:'smooth'})}if(e.key==='ArrowUp'){window.scrollBy({top:-window.innerHeight*.8,behavior:'smooth'})}});
+
+// Console easter egg
+console.log('%c SAGS OS ','background:#E80000;color:white;font-size:24px;font-weight:bold;padding:10px 20px;border-radius:4px');
+console.log('%c Fait par Baptiste pour Jalil & Andrei ','color:#666;font-size:12px');
+</script>
+</body>
+</html>
